@@ -1,6 +1,9 @@
 .card, .card>* {
   background-color: rgb(0, 0,0,0);
   font-size: 24px;
+  .description {
+    font-size: 32px;
+  }
 }
 .arrow-down {
   width: 0;
