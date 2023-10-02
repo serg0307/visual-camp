@@ -1,0 +1,13 @@
+<div class="position-relative item">
+  <ng-container *ngIf="item.isVideo; else elseTemplate">
+    <video class="w-100 zoom" autoplay loop>
+      <source src="{{item.contentUrl}}" type="video/mp4">
+    </video>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <img class="zoom" src="{{item.contentUrl}}" alt="{{item.title}}">
+  </ng-template>
+  <div class="position-absolute bottom-0 p-3 item-hint">
+    <div class="h3">{{item.title}}</div>
+  </div>
+</div>

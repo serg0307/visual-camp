@@ -1,1 +1,43 @@
+@import url(https://db.onlinewebfonts.com/c/ce6293f6e57851e10c0219652114102c?family=Futura+Round+Light);
 /* You can add global styles to this file, and also import other style files */
+$base-color: #c6538c;
+$border-dark: rgba($base-color, 0.88);
+
+/** color scheme */
+$gray-950: #0E0E0E;
+$gray-800: #151515;
+$gray-300: #A4A6A3;
+$gray-200: #C7C7C7;
+$gray-100: #FFF9F9;
+$red-600: #6D0000;
+/** color scheme */
+
+$font-family: "Futura Round Light";
+.alert {
+  border: 1px solid $border-dark;
+}
+:root {
+  --surface-primary: #{$gray-950};
+  --surface-secondary: #{$gray-800};
+  --surface-light: #{$gray-100};
+  --text-primary: #{$gray-100};
+  --text-secondary: #{$gray-300};
+  --text-dark: #{$gray-800};
+  --text-highlighted: #{$red-600};
+  --bs-body-font-family: #{$font-family};
+  --bs-body-color: #{$gray-300};
+}
+.navbar {
+  --bs-navbar-active-color: #{$gray-100};
+  --bs-navbar-color: #{$gray-300};
+}
+
+body {
+  background-color: #{$gray-950};
+}
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+  color: var(--bs-navbar-active-color);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: #{$font-family}; }

@@ -1,0 +1,23 @@
+img {
+  max-width: 100%;
+}
+.zoom {
+  transition: transform .6s; /* Animation */
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.1);
+}
+
+.item-hint {
+  background-color: var(--surface-light);
+  color: var(--text-dark);
+  opacity: .8;
+  display: none;
+}
+
+.item:hover .item-hint {
+  display: block;
+}

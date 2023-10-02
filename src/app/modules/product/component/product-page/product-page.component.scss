@@ -1,0 +1,11 @@
+.card, .card>* {
+  background-color: rgb(0, 0,0,0);
+  font-size: 24px;
+}
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 56px 28px 0 28px;
+  border-color: var(--text-secondary) transparent transparent transparent;
+}
