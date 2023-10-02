@@ -9,6 +9,7 @@ import { EntityBundleInterface } from './DrupalApi/interfaces/entity-bundle';
 import { DrupalClient } from './DrupalApi/drupal-client';
 import { EntityInterface } from './DrupalApi/interfaces/entity';
 import { JsonApiUser } from './DrupalApi/classes/user';
+import { env_enum } from './DrupalApi/environment';
 
 
 
@@ -18,6 +19,9 @@ import { JsonApiUser } from './DrupalApi/classes/user';
 export class DrupalService {
   token: string = '';
   constructor() {}
+  getBackendUrl () {
+    return env_enum.BACKEND_URL;
+  }
   async login(): Promise<boolean> {
     const userData = await JsonApiUser.Login({name: 'dev', pass: '0o9i8u7y'});
     const client = new DrupalClient();

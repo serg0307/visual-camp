@@ -10,6 +10,8 @@ import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { GalleryComponent } from './shared/gallery/gallery.component';
 import { GalleryModule } from './modules/gallery/gallery.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ContactsPageComponent } from './shared/contacts-page/contacts-page.component';
+import { ProductModule } from './modules/product/product.module';
 
 @NgModule({
   declarations: [
@@ -18,15 +20,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MainMenuComponent,
     FooterComponent,
     ToolbarComponent,
-    GalleryComponent
+    GalleryComponent,
+    ContactsPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     GalleryModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ProductModule
   ],
-  providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

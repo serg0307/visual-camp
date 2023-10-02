@@ -1,14 +1,18 @@
 <div class="container">
-  <div class="card border-0 w-100">
-    <div class="card-header border-0 d-flex">
-      <div class="col-6 description">{{product.description}}</div>
-      <div class="flex-grow-1"></div>
-      <div class="text-center">
-        <div>Download</div>
-        <div class="arrow-down m-auto"></div></div>
+
+    <div class="card border-0 w-100" *ngFor="let item of product">
+
+      <div class="card-body">
+        <img [src]="item.contentUrl" alt="" class="w-100">
+      </div>
+      <div class="card-footer border-0 d-flex">
+        <div class="col-6 description" [innerHTML]="item.description"></div>
+        <div class="flex-grow-1"></div>
+        <a [href]="item.downloadLink" (type)="item.mimeType" class="text-center">
+          <div>Download</div>
+          <div class="arrow-down m-auto"></div>
+        </a>
+      </div>
     </div>
-    <div class="card-body">
-      <img [src]="product.contentUrl" alt="" class="w-100">
-    </div>
-  </div>
+
 </div>

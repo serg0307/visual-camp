@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { WebsiteService } from './services/website.service';
+import { IWebsite } from './interfaces/website';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'vc';
+  public website: IWebsite = <IWebsite>{};
+  constructor(private websiteService: WebsiteService) {}
+  ngOnInit(): void {
+    this.websiteService.getOne('20').then(data => {
+      this.website = data;
+    });
+  }
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductPageComponent } from './component/product-page/product-page.component';
 
-import {MatCardModule} from '@angular/material/card';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,7 @@ import {MatCardModule} from '@angular/material/card';
   ],
   imports: [
     CommonModule,
-    MatCardModule
-  ]
+    BrowserModule
+  ],
 })
 export class ProductModule { }

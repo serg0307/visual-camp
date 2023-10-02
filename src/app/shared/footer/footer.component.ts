@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
+import { IWebsite } from 'src/app/interfaces/website';
 
 @Component({
   selector: 'app-footer',
@@ -6,5 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
-
+  website: IWebsite = <IWebsite>{};
+  constructor(private app: AppComponent) {}
+  ngOnInit(): void {
+    console.log('toolbar',this.app.website);
+  }
+  getLogo(): string {
+    return this.app.website.logoUrl;
+  }
+  getPhone():string {
+    return <string>this.app.website.phone;
+  }
+  getMail():string {
+    return <string>this.app.website.email;
+  }
 }

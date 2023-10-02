@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ProductInterface } from 'src/app/interfaces/product';
+import { IProduct } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -9,10 +9,24 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductPageComponent {
   @Input() id: string = '';
-  product: ProductInterface = <ProductInterface>{};
-  constructor(private productService:ProductService) {}
+  product: IProduct[] = [];
+  constructor(private productService: ProductService) { }
   ngOnInit(): void {
-    this.product = this.productService.getOne(1);
-    console.log(this.product);
+    this.productService.getOne(this.id).then(data => {
+      this.product = data;
+      console.log(this.product);
+    });
+
+  }
+  download(item: IProduct): void {
+    if (item.downloadLink) {
+      const link = document.createElement('a');
+      link.setAttribute('target', '_blank');
+      link.setAttribute('href', item.downloadLink);
+      link.setAttribute('download', `products.csv`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
   }
 }

@@ -73,7 +73,7 @@ export class DrupalClient {
    */
   async Load(entityBundle: EntityBundleInterface, uuid: string): Promise<JsonApiEntity> {
 
-    const url = `${DrupalClient.apiUrl}/${entityBundle}/${uuid}`;
+    const url = `${entityBundle.type}/${entityBundle.bundle}/${uuid}`;
 
     const query = {
       method: JsonApiHttpMethods.GET,

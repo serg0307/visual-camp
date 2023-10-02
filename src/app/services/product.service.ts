@@ -1,21 +1,57 @@
 import { Injectable } from '@angular/core';
-import { ProductInterface } from '../interfaces/product';
+import { IProduct } from '../interfaces/product';
+import { FilterOperator } from 'projects/drupal/src/lib/DrupalApi/enum';
+import { JsonApiSettings } from 'projects/drupal/src/lib/DrupalApi/jsonapi-settings';
+import { DrupalService } from 'projects/drupal/src/public-api';
+import { StylesEnum } from '../helpers/styles-enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor() { }
-  getOne(id:number):ProductInterface {
-    const prod:ProductInterface = {
-      id: '1',
-      title: 'MAIN PRODUCT',
-      contentUrl: 'https://estate.yakogo.kh.ua/sites/default/files/styles/scale_crop_1400x800/public/2023-10/new-york-city-street-photography_a2VraW6UmZqaraWkpJRqaWprrWhla2k%5B1%5D.jpg?itok=Au4RSU2y',
-      description: 'This a good example of Building visual with trees and nice exterior parts. Cars Included, sunlight and other lights.',
-      images: [],
-      downloadLink: ''
-    };
-    return prod;
+  constructor(
+    private drupal: DrupalService
+  ) { }
+  async getOne(id: string): Promise<IProduct[]> {
+
+    const settings = new JsonApiSettings();
+    settings.entityBundle = { type: 'node', bundle: 'project_item' };
+    settings.include = ['field_project_image', 'field_download'];
+    const result:IProduct[] = [];
+    const res = await this.drupal.getCollection(settings);
+    res.forEach(element => {
+      const item: IProduct = {
+        id: '',
+        title: '',
+        contentUrl: '',
+        description: ''
+      }
+      item.id = element.get('drupal_internal__nid');
+      item.title = element.get('title');
+      item.description = element.get('body')?.processed;
+
+      console.log(element);
+      const bg = element.getImages('field_project_image'); // get relationship object
+      bg.forEach(imageEntity => {
+        const bgEntity = element.findInIncluded(imageEntity.id); // find included entity
+        const styles = bgEntity.get('image_style_uri');
+        if (styles && !item.contentUrl) {
+          item.contentUrl = styles[StylesEnum.PRODUCT];
+
+        }
+
+      });
+      const dl = element.getImages('field_download')?.pop(); // get relationship object
+      if (dl) {
+        const dlEntity = element.findInIncluded(dl.id);
+        item.fileName = dlEntity.get('filename');
+        item.mimeType = dlEntity.get('filemime');
+        item.downloadLink = this.drupal.getBackendUrl() + dlEntity.get('uri')?.url;
+      }
+      result.push(item);
+    });
+    console.log(result);
+    return result;
   }
 }

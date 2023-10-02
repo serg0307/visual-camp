@@ -3,6 +3,7 @@ import { IGalleryItem } from '../interfaces/gallery-item';
 import { DrupalService } from 'projects/drupal/src/public-api';
 import { JsonApiSettings } from 'projects/drupal/src/lib/DrupalApi/jsonapi-settings';
 import { env_enum } from 'projects/drupal/src/lib/DrupalApi/environment';
+import { StylesEnum } from '../helpers/styles-enum';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class GalleryService {
     return this.gallery;
   }
   async getList(): Promise<IGalleryItem[]> {
-    console.log('get list');
+
     const result: IGalleryItem[] = [];
     const settings = new JsonApiSettings();
     settings.entityBundle = { type: 'node', bundle: 'article' };
@@ -36,9 +37,9 @@ export class GalleryService {
         const bgEntity = element.findInIncluded(imageEntity.id); // find included entity
         const styles = bgEntity.get('image_style_uri');
         if (styles && !item.contentUrl) {
-          item.contentUrl = styles['scale_width_to_750px'];
+          item.contentUrl = styles[StylesEnum.GALLERY];
         }
-        item.images.push(styles['scale_width_to_750px']);
+        item.images.push(styles[StylesEnum.GALLERY]);
       });
       const video = element.get('field_video'); // get relationship object
       if (video.data) {

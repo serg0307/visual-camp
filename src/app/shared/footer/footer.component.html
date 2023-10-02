@@ -1,3 +1,9 @@
-<footer class="container-fluid">
-
+<footer class="container-fluid mt-5">
+  <div class="container-fluid d-flex align-items-start">
+    <img [src]="getLogo()" class="navbar-brand my-3">
+    <div role="search" class="bg-light text-end w-100 my-auto">
+      <div class="phone display-6">Phone: <span class="fw-bold" [innerText]="getPhone()"></span></div>
+      <div class="phone display-6">Email: <span class="fw-bold" [innerText]="getMail()"></span></div>
+    </div>
+  </div>
 </footer>
