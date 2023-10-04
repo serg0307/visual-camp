@@ -13,6 +13,7 @@ export class AppComponent {
   constructor(private websiteService: WebsiteService) {}
   ngOnInit(): void {
     this.websiteService.getOne('20').then(data => {
+      console.log(data);
       this.website = data;
     });
   }

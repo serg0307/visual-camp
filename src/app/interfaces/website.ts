@@ -5,4 +5,5 @@ export interface IWebsite {
   email?: string;
   phone?: string;
   backendUrl: string;
+  frontPageText: string;
 }

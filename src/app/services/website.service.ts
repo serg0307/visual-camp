@@ -18,7 +18,8 @@ export class WebsiteService {
       id: '',
       title: '',
       logoUrl: '',
-      backendUrl: ''
+      backendUrl: '',
+      frontPageText: ''
     }
     const settings = new JsonApiSettings();
     settings.entityBundle = { type: 'node', bundle: 'website' };
@@ -29,6 +30,7 @@ export class WebsiteService {
       item.id = element.get('drupal_internal__nid');
       item.title = element.get('title');
       item.backendUrl = element.get('field_backend_url');
+      item.frontPageText = element.get('body')?.processed;
       const bg = element.getImages('field_image'); // get relationship object
       bg.forEach(imageEntity => {
         const bgEntity = element.findInIncluded(imageEntity.id); // find included entity

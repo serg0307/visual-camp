@@ -1,14 +1,18 @@
 img {
-  max-width: 100%;
+  width: 100%;
+
 }
 .zoom {
   transition: transform .6s; /* Animation */
   overflow: hidden;
   margin: 0 auto;
 }
-
+.transparent {
+  opacity: 0;
+}
 .zoom:hover {
   transform: scale(1.1);
+  transform-style: preserve-3d;
 }
 
 .item-hint {
