@@ -7,7 +7,7 @@ import { IGalleryItem } from 'src/app/interfaces/gallery-item';
 })
 export class GalleryItemComponent {
   @Input() item: IGalleryItem = <IGalleryItem>{};
-  @HostListener('mousemove',['$event'])
+  /*@HostListener('mousemove',['$event'])
 
   onMouseMove(e: any) {
     var amountMovedX = (e.clientX * -0.1 / 4);
@@ -26,9 +26,9 @@ export class GalleryItemComponent {
 
       x.style['margin-left'] = ix;
       x.transition = 'cubic-bezier(0,0,0,1)'
-      //x.style.transform='translate(' + amountMovedX + 'px,' + amountMovedY + 'px)' /** */
+      //x.style.transform='translate(' + amountMovedX + 'px,' + amountMovedY + 'px)'
 
     }
-  }
+  }/** */
 
 }
