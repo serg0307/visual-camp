@@ -1,0 +1,40 @@
+.loader {
+  z-index: 1000;
+  margin: 8px 9px;
+  background-color: var(--surface-primary);
+  animation: opacity-animation .5s 3.7s;
+}
+.loader img {
+  height: 118px;
+}
+
+@keyframes opacity-animation
+{
+  12.5% {
+    opacity: .825;
+  }
+
+  25% {
+    opacity: .75;
+  }
+  37.5% {
+    opacity: .675;
+  }
+
+  50% {
+    opacity: .5;
+  }
+  62.5% {
+    opacity: .375;
+  }
+
+  75% {
+    opacity: .25;
+  }
+  87.5% {
+    opacity: .125;
+  }
+  100% {
+    opacity: 0;
+  }
+}

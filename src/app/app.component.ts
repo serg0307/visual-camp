@@ -8,7 +8,8 @@ import { IWebsite } from './interfaces/website';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'vc';
+  title = 'Visual Camp';
+  loader = true;
   public website: IWebsite = <IWebsite>{};
   constructor(private websiteService: WebsiteService) {}
   ngOnInit(): void {
@@ -16,5 +17,8 @@ export class AppComponent {
       console.log(data);
       this.website = data;
     });
+    setTimeout(() => {
+      this.loader = false;
+    }, 4000);
   }
 }
