@@ -19,6 +19,6 @@ export class AppComponent {
     });
     setTimeout(() => {
       this.loader = false;
-    }, 0);
+    }, 4000);
   }
 }
