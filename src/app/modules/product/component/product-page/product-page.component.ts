@@ -14,7 +14,6 @@ export class ProductPageComponent {
   ngOnInit(): void {
     this.productService.getOne(this.id).then(data => {
       this.product = data;
-      console.log(this.product);
     });
 
   }

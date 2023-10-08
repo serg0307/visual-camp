@@ -11,7 +11,7 @@ export class FooterComponent {
   website: IWebsite = <IWebsite>{};
   constructor(private app: AppComponent) {}
   ngOnInit(): void {
-    console.log('toolbar',this.app.website);
+
   }
   getLogo(): string {
     return this.app.website.logoUrl;

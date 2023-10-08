@@ -31,7 +31,7 @@ export class ProductService {
       item.title = element.get('title');
       item.description = element.get('body')?.processed;
 
-      console.log(element);
+
       const bg = element.getImages('field_project_image'); // get relationship object
       bg.forEach(imageEntity => {
         const bgEntity = element.findInIncluded(imageEntity.id); // find included entity
@@ -51,7 +51,7 @@ export class ProductService {
       }
       result.push(item);
     });
-    console.log(result);
+
     return result;
   }
 }

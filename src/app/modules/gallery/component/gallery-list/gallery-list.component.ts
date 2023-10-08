@@ -25,7 +25,7 @@ export class GalleryListComponent {
   constructor(private galleryService: GalleryService) {}
   ngOnInit(): void {
     this.galleryService.getList().then((data:IGalleryItem[]) => {
-      console.log(data);
+
       this.gallery = data;
       this.buildColumns();
     });
@@ -33,7 +33,7 @@ export class GalleryListComponent {
   buildColumns() {
     const itemsPerColumn = this.gallery.length / 3;
     this.gallery.forEach((element, index) => {
-      console.log(index, itemsPerColumn, this.gallery.length);
+
       if (index< itemsPerColumn) {
         this.columns.one.push(element);
       } else if (index< itemsPerColumn *2) {

@@ -44,7 +44,7 @@ export class GalleryService {
       const video = element.get('field_video'); // get relationship object
       if (video.data) {
         const videoEntity = element.findInIncluded(video.data.id); // find included entity
-        console.log('video',videoEntity.get('uri')?.url);
+
         item.contentUrl = env_enum.BACKEND_URL+ videoEntity.get('uri')?.url;
         item.isVideo = true;
       }
