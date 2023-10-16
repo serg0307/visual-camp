@@ -7,7 +7,14 @@
 .loader img {
   height: 118px;
 }
-
+.empty-footer {
+  height: 140px;
+}
+@media screen and (max-width: 1100px) {
+  .empty-footer {
+    height: 70px;
+  }
+}
 @keyframes opacity-animation
 {
   12.5% {
