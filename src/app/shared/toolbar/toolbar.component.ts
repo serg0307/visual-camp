@@ -16,4 +16,7 @@ export class ToolbarComponent {
   getLogo(): string {
     return this.app.website.logoUrl;
   }
+  getTitle(): string {
+    return this.app.website.title;
+  }
 }
