@@ -22,4 +22,7 @@ export class FooterComponent {
   getMail():string {
     return <string>this.app.website.email;
   }
+  getTitle(): string{
+    return this.app.website.title;
+  }
 }

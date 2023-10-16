@@ -12,6 +12,7 @@ import { GalleryModule } from './modules/gallery/gallery.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactsPageComponent } from './shared/contacts-page/contacts-page.component';
 import { ProductModule } from './modules/product/product.module';
+import { BrandingComponent } from './shared/branding/branding.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProductModule } from './modules/product/product.module';
     MainMenuComponent,
     FooterComponent,
     ToolbarComponent,
-    ContactsPageComponent
+    ContactsPageComponent,
+    BrandingComponent
   ],
   imports: [
     BrowserModule,
