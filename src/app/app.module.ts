@@ -14,6 +14,9 @@ import { ContactsPageComponent } from './shared/contacts-page/contacts-page.comp
 import { ProductModule } from './modules/product/product.module';
 import { BrandingComponent } from './shared/branding/branding.component';
 
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { SiteDisabledComponent } from './shared/site-disabled/site-disabled.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,16 +25,20 @@ import { BrandingComponent } from './shared/branding/branding.component';
     FooterComponent,
     ToolbarComponent,
     ContactsPageComponent,
-    BrandingComponent
+    BrandingComponent,
+    SiteDisabledComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     GalleryModule,
-    BrowserAnimationsModule,
-    ProductModule
+    BrowserAnimationsModule
   ],
-
+  exports: [
+    NotFoundComponent,
+    SiteDisabledComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

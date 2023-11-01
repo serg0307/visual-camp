@@ -1,3 +1,5 @@
+import { IImage } from "./image";
+
 export interface IProduct {
   id: string;
   title: string;
@@ -7,4 +9,5 @@ export interface IProduct {
   fileName?: string;
   mimeType?: string;
   description: string;
+  content: IImage[]
 }

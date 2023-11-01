@@ -6,4 +6,5 @@ export interface IWebsite {
   phone?: string;
   backendUrl: string;
   frontPageText: string;
+  isActive: boolean;
 }

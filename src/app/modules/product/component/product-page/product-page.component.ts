@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
+
 import { IProduct } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
-
+import { NotFoundComponent } from 'src/app/shared/not-found/not-found.component';
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
@@ -12,12 +13,13 @@ export class ProductPageComponent {
   product: IProduct[] = [];
   constructor(private productService: ProductService) { }
   ngOnInit(): void {
-    this.productService.getOne(this.id).then(data => {
+    this.productService.getOne(this.id).then((data: IProduct[]) => {
       this.product = data;
+    }, function(error) {
+      console.log(error);
     });
-
   }
-  download(item: IProduct): void {
+  download_(item: IProduct): void {
     if (item.downloadLink) {
       const link = document.createElement('a');
       link.setAttribute('target', '_blank');
@@ -27,5 +29,8 @@ export class ProductPageComponent {
       link.click();
       link.remove();
     }
+  }
+  download(url: string) { ;
+    window.open(url);
   }
 }

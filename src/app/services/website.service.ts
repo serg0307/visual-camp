@@ -19,7 +19,8 @@ export class WebsiteService {
       title: '',
       logoUrl: '',
       backendUrl: '',
-      frontPageText: ''
+      frontPageText: '',
+      isActive: false
     }
     const settings = new JsonApiSettings();
     settings.entityBundle = { type: 'node', bundle: 'website' };
@@ -40,6 +41,7 @@ export class WebsiteService {
       });
       item.email = element.get('field_email');
       item.phone = element.get('field_phone');
+      item.isActive = element.get('field_active');
     });
     return item;
   }

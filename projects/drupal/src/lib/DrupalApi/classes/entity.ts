@@ -31,6 +31,7 @@ export class JsonApiEntity implements EntityInterface {
    * @param {EntityInterface} entity
    */
   build(entity: EntityInterface): void {
+    if (!entity) return;
     const arr = entity.type.split('--');
     this.bundle = {
       type: arr[0],

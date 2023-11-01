@@ -9,7 +9,9 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class FrontPageComponent {
   text: string = '';
-  constructor(public app: AppComponent) {}
+  constructor(public app: AppComponent) {
+    console.log(this.app.website);
+  }
   getText(): string {
     return this.app.website.frontPageText;
   }

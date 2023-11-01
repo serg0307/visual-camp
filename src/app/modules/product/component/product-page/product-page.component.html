@@ -1,18 +1,23 @@
-<div class="container">
-
+<ng-container *ngIf="product.length; else elseTemplate">
+  <div class="container">
     <div class="card border-0 w-100" *ngFor="let item of product">
-
       <div class="card-body">
-        <img [src]="item.contentUrl" alt="" class="w-100">
+        <img *ngFor="let image of item.content" [src]="image.url" alt="" class="w-100 mb-1">
       </div>
       <div class="card-footer border-0 d-flex">
-        <div class="col-6 description" [innerHTML]="item.description"></div>
+        <div class="col-6 description">
+          <h2>{{item.title}}</h2>
+          <div [innerHTML]="item.description" class="fw-normal"></div>
+        </div>
         <div class="flex-grow-1"></div>
-        <a [href]="item.downloadLink" (type)="item.mimeType" class="text-center">
+        <a *ngIf="item.downloadLink" [href]="item.downloadLink" class="text-center text-secondary">
           <div>Download</div>
           <div class="arrow-down m-auto"></div>
         </a>
       </div>
     </div>
-
-</div>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  <app-not-found></app-not-found>
+</ng-template>
