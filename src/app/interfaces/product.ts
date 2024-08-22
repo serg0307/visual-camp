@@ -1,4 +1,5 @@
 import { IImage } from "./image";
+import { IProject } from "./project";
 
 export interface IProduct {
   id: string;
@@ -9,5 +10,6 @@ export interface IProduct {
   fileName?: string;
   mimeType?: string;
   description: string;
-  content: IImage[]
+  content: IImage[];
+  project: IProject;
 }

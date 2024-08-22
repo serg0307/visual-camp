@@ -1,12 +1,13 @@
 <ng-container *ngIf="product.length; else elseTemplate">
   <div class="container">
-    <div class="card border-0 w-100" *ngFor="let item of product">
-      <div class="card-body">
-        <img *ngFor="let image of item.content" [src]="image.url" alt="" class="w-100 mb-1">
+    <div class="h1 w-100 text-center project-title">{{title}}</div>
+    <div class="card border-0 w-100 mt-5" *ngFor="let item of product">
+      <div class="card-header border-0"><h2>{{item.title}}</h2></div>
+      <div class="card-body border-0">
+        <img *ngFor="let image of item.content" [src]="image.url" alt="" class="w-100 mb-3">
       </div>
       <div class="card-footer border-0 d-flex">
         <div class="col-6 description">
-          <h2>{{item.title}}</h2>
           <div [innerHTML]="item.description" class="fw-normal"></div>
         </div>
         <div class="flex-grow-1"></div>

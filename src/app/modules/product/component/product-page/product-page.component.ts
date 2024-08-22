@@ -11,10 +11,13 @@ import { NotFoundComponent } from 'src/app/shared/not-found/not-found.component'
 export class ProductPageComponent {
   @Input() id: string = '';
   product: IProduct[] = [];
+  title = '';
   constructor(private productService: ProductService) { }
   ngOnInit(): void {
     this.productService.getOne(this.id).then((data: IProduct[]) => {
       this.product = data;
+      console.log(data[0]);
+      this.title = data[0]?.project.title;
     }, function(error) {
       console.log(error);
     });

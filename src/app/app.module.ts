@@ -16,6 +16,8 @@ import { BrandingComponent } from './shared/branding/branding.component';
 
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { SiteDisabledComponent } from './shared/site-disabled/site-disabled.component';
+import { WorkflowPageComponent } from './modules/workflow/pages/workflow-page/workflow-page.component';
+import { WorkflowModule } from './modules/workflow/workflow.module';
 
 @NgModule({
   declarations: [
@@ -27,13 +29,14 @@ import { SiteDisabledComponent } from './shared/site-disabled/site-disabled.comp
     ContactsPageComponent,
     BrandingComponent,
     SiteDisabledComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     GalleryModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    WorkflowModule
   ],
   exports: [
     NotFoundComponent,
@@ -42,5 +45,3 @@ import { SiteDisabledComponent } from './shared/site-disabled/site-disabled.comp
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-

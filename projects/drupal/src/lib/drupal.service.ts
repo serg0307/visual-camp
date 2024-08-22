@@ -27,7 +27,7 @@ export class DrupalService {
     const client = new DrupalClient();
     client.authorize(userData.access_token);
     this.token = userData.access_token;
-
+    console.log(userData);
     return userData.access_token? true: false;
   }
   async getCollection(settings: JsonApiSettings): Promise<JsonApiEntity[]> {

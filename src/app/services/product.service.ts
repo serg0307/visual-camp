@@ -4,6 +4,7 @@ import { FilterOperator } from 'projects/drupal/src/lib/DrupalApi/enum';
 import { JsonApiSettings } from 'projects/drupal/src/lib/DrupalApi/jsonapi-settings';
 import { DrupalService } from 'projects/drupal/src/public-api';
 import { StylesEnum } from '../helpers/styles-enum';
+import { JsonApiEntity } from 'projects/drupal/src/lib/DrupalApi/classes/entity';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,9 @@ export class ProductService {
 
     const settings = new JsonApiSettings();
     settings.entityBundle = { type: 'node', bundle: 'project_item' };
-    settings.include = ['field_project_image', 'field_download'];
+    settings.include = ['field_project_image', 'field_download', 'field_project'];
     settings.addFilter('field_project.id', id, FilterOperator.EQUAL);
-    const result:IProduct[] = [];
+    const result: IProduct[] = [];
     const res = await this.drupal.getCollection(settings);
     res.forEach(element => {
       const item: IProduct = {
@@ -27,7 +28,8 @@ export class ProductService {
         title: '',
         contentUrl: '',
         description: '',
-        content: []
+        content: [],
+        project: <IProduct>{}
       }
       item.id = element.get('drupal_internal__nid');
       item.title = element.get('title');
@@ -58,6 +60,12 @@ export class ProductService {
         item.mimeType = dlEntity.get('filemime');
         item.downloadLink = this.drupal.getBackendUrl() + dlEntity.get('uri')?.url;
       }
+      const proj = <JsonApiEntity>element.getImages('field_project')?.pop(); // get relationship object
+
+      const projEntity = element.findInIncluded(proj.id);
+      item.project.id = proj.id;
+      item.project.title = projEntity.get('name');
+
       result.push(item);
     });
 

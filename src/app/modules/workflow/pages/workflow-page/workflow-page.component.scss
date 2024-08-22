@@ -1,0 +1,36 @@
+.icon {
+  width: 87px;
+  height: 87px;
+  border: #46a35e 1px solid;
+  background-color: unset;
+}
+.item {
+  width: 87px;
+  height: 87px;
+}
+.sidebar {
+  .completed {
+    background-color: #46a35e;
+  }
+
+}
+@media screen and (max-width: 676px) {
+  .icon,
+  .item {
+    width: 40px;
+    height: 40px;
+  }
+}
+.item.active {
+  background-color: white;
+  color: black;
+}
+.icon.active {
+  border: 0.2rem solid #46a35e;
+  box-shadow: 0 0 .2rem #46a35e,
+  0 0 .2rem #46a35e,
+  0 0 2rem #46a35e,
+  0 0 0.8rem #46a35e,
+  0 0 2.8rem #46a35e,
+  inset 0 0 1.3rem #46a35e;
+}
