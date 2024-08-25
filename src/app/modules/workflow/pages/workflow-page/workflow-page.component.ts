@@ -12,6 +12,7 @@ export class WorkflowPageComponent {
   private workflowService = inject(WorkflowService);
   ngOnInit(): void {
     this.workflow = this.workflowService.getWorkflow();
+    console.log(this.workflow);
   }
   yes(stage: WorkflowStage) {
     stage.completed = true;
@@ -19,14 +20,16 @@ export class WorkflowPageComponent {
   no(stage: WorkflowStage) {
 
   }
-  isCurrent(i: number): boolean {
-    const stage = this.workflow.stages[i];
-    if (stage.completed) {
-      return false;
+  isCurrent(): string {
+    if (!this.workflow.stages.audio.completed) {
+      return 'audio';
     }
-    if (i > 0) {
-      return this.workflow.stages[i-1]?.completed;
+    if (!this.workflow.stages.atmosphere.completed) {
+      return 'atmosphere';
     }
-    return true;
+    if (!this.workflow.stages.animation.completed) {
+      return 'animation';
+    }
+    return 'visual';
   }
 }

@@ -1,1 +1,7 @@
-<p>stage-atmosphere works!</p>
+  <div class="row m-0">
+    <div class="item col-12 col-md-4 position-relative mb-3" *ngFor="let item of stage.items" (click)="select(item)">
+      <img [src]="item.fileUrl" alt="" class="w-100">
+      <div class="text-overlay">{{item.title}}</div>
+      <input class="form-check-input position-absolute bottom-0 end-0 mb-5 me-5 display-5" type="checkbox" value="">
+    </div>
+  </div>

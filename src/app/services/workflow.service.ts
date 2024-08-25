@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FileTypesEnum, Workflow } from '../interfaces/workflow';
+import { FileTypesEnum, Workflow, WorkflowItem } from '../interfaces/workflow';
 
 @Injectable({
   providedIn: 'root'
@@ -10,78 +10,50 @@ export class WorkflowService {
 
   getWorkflow(): Workflow {
     const wf: Workflow = {
-      title: 'Проект "Класне кіно"',
+      title: 'Nice movie',
       id: '1',
-      stages: [
-        {
+      stages: {
+        audio: {
           title: 'Звук',
           id: 'sound',
           completed: false,
           items: [
             {
-              title: 'Трек 1',
-              fileUrl: '/assets/audio/nightfall-future-bass-music-228100.mp3',
+              title: '1',
+              fileUrl: '/assets/audio/track1.mp3',
               fileType: FileTypesEnum.SOUND,
               id: '1',
               description: ''
             },
             {
-              title: 'Трек 2',
-              fileUrl: '/assets/audio/nightfall-future-bass-music-228100.mp3',
+              title: '2',
+              fileUrl: '/assets/audio/track1.mp3',
               fileType: FileTypesEnum.SOUND,
               id: '2',
               description: ''
             },
             {
-              title: 'Трек 3',
-              fileUrl: '/assets/audio/nightfall-future-bass-music-228100.mp3',
+              title: '3',
+              fileUrl: '/assets/audio/track1.mp3',
               fileType: FileTypesEnum.SOUND,
               id: '3',
               description: ''
             },
           ]
         },
-        {
+        atmosphere: {
           title: 'Атмосфера',
           id: 'atmosphere',
           completed: false,
-          items: [
-            {
-              title: 'Атмосфера 1',
-              fileUrl: '/assets/images/mock/setting1.jpg',
-              fileType: FileTypesEnum.IMAGE,
-              id: '33',
-              description: ''
-            },
-            {
-              title: 'Атмосфера 2',
-              fileUrl: '/assets/images/mock/setting2.jpg',
-              fileType: FileTypesEnum.IMAGE,
-              id: '34',
-              description: ''
-            },{
-              title: 'Атмосфера 1',
-              fileUrl: '/assets/images/mock/setting1.jpg',
-              fileType: FileTypesEnum.IMAGE,
-              id: '37',
-              description: ''
-            },
-            {
-              title: 'Атмосфера 2',
-              fileUrl: '/assets/images/mock/setting2.jpg',
-              fileType: FileTypesEnum.IMAGE,
-              id: '38',
-              description: ''
-            },
-          ]
+          items: []
         },
-        {
+        animation: {
           title: 'Аніматік',
           id: 'animatic',
           completed: false,
           items: [
             {
-              title: 'Аніматік 1',
+              title: '1',
               fileUrl: '/assets/video/Oceanix2_BIG.mp4',
               fileType: FileTypesEnum.VIDEO,
               id: '52',
@@ -89,29 +61,46 @@ export class WorkflowService {
             }
           ]
         },
-        {
+        visual: {
           title: 'Візуал',
           id: 'visual',
           completed: false,
           items: [
             {
               title: 'Атмосфера 1',
-              fileUrl: '/assets/images/mock/visual1-0.jpg',
-              fileUrlProd: '/assets/images/mock/visual1-1.jpg',
+              fileUrl: '/assets/images/mock/visual1-1.jpg',
+              fileUrlProd: '/assets/images/mock/visual1-0.jpg',
+              fileType: FileTypesEnum.IMAGE,
+              id: '53',
+              description: ''
+            },
+            {
+              title: 'Атмосфера 1',
+              fileUrl: '/assets/images/mock/visual1-1.jpg',
+
               fileType: FileTypesEnum.IMAGE,
               id: '53',
               description: ''
             }
           ]
         },
-
-      ],
-      currentStage: 0
+      }
     }
-
+    this.addAtmospheres(wf);
     return wf;
   }
-  next(workflow: Workflow) {
+  addAtmospheres(wf: Workflow): void {
+    for (let index = 1;index < 13; index++) {
+      const item:WorkflowItem = {
+        id: index.toString(),
+        title: index.toString(),
+        fileUrl: `/assets/images/atmospheres/${index}.jpg`,
+        fileType: FileTypesEnum.IMAGE,
+        description: ''
+      }
+      wf.stages.atmosphere.items.push(item);
+    }
 
   }
+
 }

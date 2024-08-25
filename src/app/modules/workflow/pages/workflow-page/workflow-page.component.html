@@ -1,47 +1,160 @@
-<div class="container">
-  <div class="h1 mb-3">{{workflow.title}}</div>
-  <div class="wrapper w-100">
-  </div>
-</div>
-<div class="d-flex">
+<div class="mb-3 display-4">{{workflow.title}}</div>
+
+<!-- div class="d-flex">
 
   <div class="sidebar text-center mx-4">
-    <div class="icon p-0 d-flex align-items-center justify-content-center rounded-circle completed">
+    <div
+      class="icon p-0 d-flex align-items-center justify-content-center rounded-circle {{isCurrent() == 'audio'? 'active': workflow.stages.audio.completed? 'completed' :''}}">
       <img src="/assets/images/stage-icons/audio_icon.png" alt="" class="w-100 mx-2">
     </div>
-    <div class="icon p-0 d-flex align-items-center justify-content-center rounded-circle my-3 completed">
+    <div
+      class="icon p-0 d-flex align-items-center justify-content-center rounded-circle my-3 {{isCurrent() == 'atmosphere'? 'active': workflow.stages.atmosphere.completed? 'completed' :''}}">
       <img src="/assets/images/stage-icons/atmosphere_icon.png" alt="" class="w-100 mx-2 mt-2">
     </div>
-    <div class="icon p-0 d-flex align-items-center justify-content-center rounded-circle mb-3 active neon">
+    <div
+      class="icon p-0 d-flex align-items-center justify-content-center rounded-circle mb-3 {{isCurrent() == 'animation'? 'active': workflow.stages.animation.completed? 'completed' :''}}">
       <img src="/assets/images/stage-icons/animatic_icon.png" alt="" class="w-100 mx-3">
     </div>
-    <div class="icon p-0 d-flex align-items-center justify-content-center rounded-circle ">
+    <div
+      class="icon p-0 d-flex align-items-center justify-content-center rounded-circle {{isCurrent() == 'visual'? 'active': workflow.stages.visual.completed? 'completed' :''}}">
       <img src="/assets/images/stage-icons/visual_icon.png" alt="" class="w-100 mx-3">
     </div>
 
-    <div class="d-flex my-5">
+    <div class="item d-flex my-5">
       <img src="/assets/images/stage-icons/fire_red.png" alt="" class="">
     </div>
   </div>
 
 
   <div class="flex-grow-1">
-    <div class="item d-flex align-items-center border-0 w-100 px-3">
-
-      <div class="display-6 flex-grow-1 mx-3">Track 1</div>
-      <audio src="/assets/audio/track1.mp3" controls></audio>
-
+    <div
+      class="item d-flex align-items-center border-0 px-3 {{isCurrent() == 'audio'? 'active': workflow.stages.audio.completed? 'completed' :''}}">
+      <div class="display-6 flex-grow-1 mx-3">
+        <div class="">Audio</div>
+      </div>
+      <div class="d-flex align-items-center" *ngFor="let item of workflow.stages.audio.result">
+        <div class="mx-3">{{item.title}}</div>
+        <audio [src]="item.fileUrl" controls></audio>
+      </div>
     </div>
-    <div class="item d-flex align-items-center w-100 my-3 px-3">
+    <app-stage-audio *ngIf="isCurrent() == 'audio'" [stage]="workflow.stages.audio"></app-stage-audio>
+
+    <div
+      class="item d-flex align-items-center my-3 px-3 {{isCurrent() == 'atmosphere'? 'active': workflow.stages.atmosphere.completed? 'completed' :''}}">
       <div class="display-6 flex-grow-1 mx-3">Atmosphere</div>
-      <img src="/assets/images/mock/setting1.jpg" alt="" style="width: 300px; height: 100%;">
+      <div class="d-flex align-items-center h-100 overflow-hidden" *ngFor="let item of workflow.stages.atmosphere.result">
+        <div class="mx-3"># {{item.title}}</div>
+        <img *ngIf="workflow.stages.atmosphere.completed" [src]="item.fileUrl" alt=""
+          style="width: 300px;">
+      </div>
     </div>
-    <div class="item d-flex align-items-center w-100 mb-3 px-3 active">
+    <app-stage-atmosphere *ngIf="isCurrent() == 'atmosphere'"
+      [stage]="workflow.stages.atmosphere"></app-stage-atmosphere>
+
+    <div class="item d-flex align-items-center mb-3 px-3 {{isCurrent() == 'animation'? 'active': workflow.stages.atmosphere.completed? 'completed' :''}}">
       <div class="display-6 flex-grow-1 mx-3">Animatic</div>
+      <div class="d-flex align-items-center h-100  overflow-hidden" *ngFor="let item of workflow.stages.animation.result">
+        <div class="mx-3">{{item.title}}</div>
+        <video *ngIf="workflow.stages.animation.completed" [src]="item.fileUrl" alt=""
+          style="width: 300px;" ></video>
+      </div>
     </div>
-    <app-stage-animatic></app-stage-animatic>
-    <div class="item d-flex align-items-center w-100 px-3">
+    <app-stage-animatic *ngIf="isCurrent() == 'animation'" [stage]="workflow.stages.animation"></app-stage-animatic>
+
+    <div class="item d-flex align-items-center px-3 {{isCurrent() == 'visual'? 'active': workflow.stages.visual.completed? 'completed' :''}}">
       <div class="display-6 flex-grow-1 mx-3">Visual</div>
+    </div>
+    <app-stage-visual *ngIf="isCurrent() == 'visual'" [stage]="workflow.stages.visual"></app-stage-visual>
+  </div>
+</div -->
+
+<div class="accordion text-secondary border-0" id="accordionExample">
+  <!-- audio -->
+  <div class="accordion-item bg-transparent border-0 position-relative">
+
+    <h2 class="accordion-header" id="headingOne">
+      <div class="accordion-button bg-transparent border-0 {{isCurrent() == 'audio'? '': 'collapsed'}}" type="button"
+        data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <div
+          class="icon p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3 {{isCurrent() == 'audio'? 'active': workflow.stages.audio.completed? 'completed' :''}}">
+          <img src="/assets/images/stage-icons/audio_icon.png" alt="" class="w-100 mx-2">
+        </div>
+        <div class="display-6 text-secondary">Audio</div>
+        <app-stage-result [stage]="workflow.stages.audio"></app-stage-result>
+      </div>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse {{isCurrent() == 'audio'? 'show': ''}}"
+      aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body d-flex">
+        <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 "></div>
+        <app-stage-audio *ngIf="isCurrent() == 'audio'" [stage]="workflow.stages.audio"></app-stage-audio>
+      </div>
+    </div>
+  </div>
+  <!-- atmosphere -->
+  <div class="accordion-item bg-transparent border-0">
+    <h2 class="accordion-header" id="headingAtmpshere">
+      <div class="accordion-button bg-transparent border-0 overflow-hidden" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapseAtmosphere" aria-expanded="true" aria-controls="collapseAtmosphere">
+        <div
+          class="icon p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3 {{isCurrent() == 'atmosphere'? 'active': workflow.stages.atmosphere.completed? 'completed' :''}}">
+          <img src="/assets/images/stage-icons/atmosphere_icon.png" alt="" class="w-100 mx-2">
+        </div>
+        <div class="display-6 text-secondary">Atmosphere</div>
+        <app-stage-result [stage]="workflow.stages.atmosphere"></app-stage-result>
+      </div>
+    </h2>
+    <div id="collapseAtmosphere" class="accordion-collapse collapse {{isCurrent() == 'atmosphere'? 'show': ''}}"
+      aria-labelledby="headingAtmpshere" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 "></div>
+        <app-stage-atmosphere [stage]="workflow.stages.atmosphere"></app-stage-atmosphere>
+      </div>
+    </div>
+  </div>
+  <!-- animatic -->
+  <div class="accordion-item bg-transparent border-0 position-relative">
+    <h2 class="accordion-header" id="headingAnimatic">
+      <div class="accordion-button bg-transparent border-0 overflow-hidden" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapseAnimatic" aria-expanded="true" aria-controls="collapseAnimatic">
+        <div
+          class="icon p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3 {{isCurrent() == 'animation'? 'active': workflow.stages.audio.completed? 'completed' :''}}">
+          <img src="/assets/images/stage-icons/animatic_icon.png" alt="" class="w-100 mx-2">
+        </div>
+        <div class="d-flex w-50">
+          <div class="display-6 text-secondary">Animatic</div>
+          <app-stage-result [stage]="workflow.stages.animation"></app-stage-result>
+        </div>
+      </div>
+    </h2>
+    <div id="collapseAnimatic" class="accordion-collapse collapse {{isCurrent() == 'animation'? 'show': ''}}"
+      aria-labelledby="headingAnimatic" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 "></div>
+        <app-stage-animatic *ngIf="isCurrent() == 'animation'" [stage]="workflow.stages.animation"></app-stage-animatic>
+      </div>
+    </div>
+  </div>
+  <!-- visual -->
+  <div class="accordion-item bg-transparent border-0">
+
+    <h2 class="accordion-header" id="headingVisual">
+      <button class="accordion-button bg-transparent border-0" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapseVisual" aria-expanded="true" aria-controls="collapseVisual">
+        <div
+          class="icon p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3 {{isCurrent() == 'visual'? 'active': workflow.stages.audio.completed? 'completed' :''}}">
+          <img src="/assets/images/stage-icons/visual_icon.png" alt="" class="w-100 mx-2">
+        </div>
+        <div class="display-6 text-secondary">Visual</div>
+
+      </button>
+    </h2>
+    <div id="collapseVisual" class="accordion-collapse collapse {{isCurrent() == 'visual'? 'show': ''}}"
+      aria-labelledby="headingVisual" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 "></div>
+        <app-stage-visual [stage]="workflow.stages.visual"></app-stage-visual>
+      </div>
     </div>
   </div>
 </div>

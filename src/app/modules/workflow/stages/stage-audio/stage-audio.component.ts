@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { WorkflowItem, WorkflowStage } from 'src/app/interfaces/workflow';
 
 @Component({
   selector: 'app-stage-audio',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./stage-audio.component.scss']
 })
 export class StageAudioComponent {
-
+  @Input() stage: WorkflowStage = <WorkflowStage>{};
+  select(item: WorkflowItem) {
+    this.stage.result = [item];
+    this.stage.completed = true;
+  }
 }

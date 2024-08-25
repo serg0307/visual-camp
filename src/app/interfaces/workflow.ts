@@ -1,8 +1,7 @@
 export interface Workflow {
   id: string;
   title: string;
-  stages: WorkflowStage[];
-  currentStage: number;
+  stages: WorkflowStagesList;
 }
 
 export interface WorkflowStage {
@@ -23,8 +22,15 @@ export interface WorkflowItem {
   selected?: boolean;
 }
 
+interface WorkflowStagesList {
+  audio: WorkflowStage;
+  atmosphere: WorkflowStage;
+  animation: WorkflowStage;
+  visual: WorkflowStage;
+}
+
 export enum FileTypesEnum {
-  SOUND = "sound",
+  SOUND = "audio",
   VIDEO = 'video',
   IMAGE = 'image',
 }

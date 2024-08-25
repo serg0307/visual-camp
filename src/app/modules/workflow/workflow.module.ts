@@ -10,6 +10,7 @@ import { StageAtmosphereComponent } from './stages/stage-atmosphere/stage-atmosp
 import { StageAnimaticComponent } from './stages/stage-animatic/stage-animatic.component';
 import { StageVisualComponent } from './stages/stage-visual/stage-visual.component';
 import { ProgressSidebarComponent } from './components/progress-sidebar/progress-sidebar.component';
+import { StageResultComponent } from './components/stage-result/stage-result.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProgressSidebarComponent } from './components/progress-sidebar/progress
     StageAtmosphereComponent,
     StageAnimaticComponent,
     StageVisualComponent,
-    ProgressSidebarComponent
+    ProgressSidebarComponent,
+    StageResultComponent,
   ],
   imports: [
     CommonModule,
