@@ -141,6 +141,20 @@ export class WorkflowPageComponent {
               }
               stageVisual.items.push(i);
             });
+            stageVisual.result = [];
+            stage.relationships.field_result.data.forEach((item:any) => {
+              const inc = stage.included.find((el: any) => el.id == item.id);
+              const i: WorkflowItem = {
+                id: item.id,
+                title: inc.attributes.filename.split('.')[0],
+                fileUrl: 'https://admin.visualcamp.com.ua/'+inc.attributes.uri.url,
+                fileType: FileTypesEnum.VIDEO,
+                description: ''
+              }
+              stageVisual.result?.push(i);
+            });
+            this.workflow.stages.visual.push(stageVisual);
+            console.log('stageVisual', stageVisual)
             break;
 
           default:

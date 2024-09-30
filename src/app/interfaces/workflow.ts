@@ -29,7 +29,7 @@ interface WorkflowStagesList {
   audio: WorkflowStage;
   atmosphere: WorkflowStage;
   animation: WorkflowStage;
-  visual: WorkflowStage;
+  visual: WorkflowStage[];
 }
 
 export enum FileTypesEnum {

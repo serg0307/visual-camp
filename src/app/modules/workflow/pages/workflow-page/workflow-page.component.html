@@ -140,13 +140,13 @@
     </div>
   </div>
   <!-- visual -->
-  <div class="accordion-item bg-transparent border-0  {{isCurrent() == 'animation'? 'active': workflow.stages.visual.completed? 'completed' :''}} position-relative">
+  <div class="accordion-item bg-transparent border-0  {{isCurrent() == 'animation'? 'active': ''}} position-relative">
 
     <h2 class="accordion-header" id="headingVisual">
       <div class="accordion-button bg-transparent border-0" type="button" data-bs-toggle="collapse"
         aria-expanded="true" aria-controls="collapseVisual">
         <div
-          class="icon {{ workflow.stages.visual.completed? '' :'bg-black'}} p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3">
+          class="icon p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3">
           <img src="/assets/images/stage-icons/visual_icon.png" alt="" class="w-100 mx-2">
         </div>
         <div class="display-6 text-secondary col-2">Visual</div>
@@ -157,7 +157,7 @@
       aria-labelledby="headingVisual" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 "></div>
-        <app-stage-visual [stage]="workflow.stages.visual"></app-stage-visual>
+        <app-stage-visual *ngFor="let item of workflow.stages.visual" [stage]="item"></app-stage-visual>
       </div>
     </div>
   </div>
@@ -165,4 +165,4 @@
 <app-decline-dialog [stage]="workflow.stages.audio"></app-decline-dialog>
 <app-decline-dialog [stage]="workflow.stages.atmosphere"></app-decline-dialog>
 <app-decline-dialog [stage]="workflow.stages.animation"></app-decline-dialog>
-<app-decline-dialog [stage]="workflow.stages.visual"></app-decline-dialog>
+<app-decline-dialog *ngFor="let item of workflow.stages.visual" [stage]="item"></app-decline-dialog>

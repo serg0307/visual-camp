@@ -79,14 +79,7 @@ export class WorkflowService {
           ],
           isApproveStage: true,
         },
-        visual: {
-          title: 'Visual',
-          id: '',
-          completed: false,
-          items: [
-          ],
-          isApproveStage: true,
-        },
+        visual: []
       }
     }
     return wf;
