@@ -19,7 +19,7 @@ export class JsonApiUser {
    */
   static async Login(data: LoginRequestInterface): Promise<LoginResponse> {
     const result = await axios
-      .post(`${env_enum.BACKEND_URL}/${env_enum.PATH}/user/login?_format=json`, data, JsonApiUser.config)
+      .post(`${env_enum.BACKEND_URL}/user/login?_format=json`, data, JsonApiUser.config)
       .catch((error) => {
         throw new Error(error);
       })

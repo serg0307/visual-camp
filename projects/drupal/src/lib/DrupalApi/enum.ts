@@ -13,13 +13,7 @@ export enum AuthTokenError {
   INVALID_TOKEN = 'Token is invalid.'
 }
 export enum EntityBundles {
-  SCENE = 'node/scene',
-  GAME = 'node/game',
-  CHARACTER = 'node/character',
-  ACTIONS = 'comment/scene_actions',
-  CHAT = 'comment/chat_messages',
-  ACHIEVEMENTS = 'taxonomy_term/achievements',
-  GENRES = 'taxonomy_term/genres',
+  STAGE = 'comment/project_flow_stage',
   USER = 'user/user',
   FILE = 'file/file'
 }

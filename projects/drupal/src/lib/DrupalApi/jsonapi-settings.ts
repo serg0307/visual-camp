@@ -64,7 +64,7 @@ export class JsonApiSettings {
     this.filterGroups = [];
     this.include = [];
     this.pageOffset = 0;
-    this.pageLimit = 20;
+    this.pageLimit = 50;
     this.sort = '';
   }
   public buildUrlParameters(): string {

@@ -20,6 +20,7 @@ export class GalleryService {
     const settings = new JsonApiSettings();
     settings.entityBundle = { type: 'node', bundle: 'article' };
     settings.include = ['field_image', 'field_video'];
+    settings.pageLimit = 50;
     const res = await this.drupal.getCollection(settings);
     res.forEach(element => {
       const item: IGalleryItem = {

@@ -6,4 +6,6 @@ export interface EntityAttributesInterface {
   field_archived?: boolean;
   body?: EntityFieldTextInterface;
   comment_body?: EntityFieldTextInterface;
+  field_completed?: boolean;
+  field_declined?: boolean;
 }

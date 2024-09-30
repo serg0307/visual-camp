@@ -8,13 +8,6 @@
   width: 87px;
   height: 87px;
 }
-.sidebar {
-  .completed {
-    background-color: #46a35e;
-
-  }
-
-}
 @media screen and (max-width: 676px) {
   .icon,
   .item {
@@ -30,32 +23,48 @@
   color: black;
   width: 100%;
 }
+.completed .icon{
+  background-color: #46a35e;
+}
 .item.completed {
   width: 50%;
 }
 .active {
-.icon {
-  border: 0.2rem solid #46a35e;
-  box-shadow: 0 0 .2rem #46a35e,
-  0 0 .2rem #46a35e,
-  0 0 2rem #46a35e,
-  0 0 0.8rem #46a35e,
-  0 0 2.8rem #46a35e,
-  inset 0 0 1.3rem #46a35e;
-}
-.item {
-  background-color: white;
-  color: black;
-  width: 100%;
-}
+  .icon.highlight {
+    border: 0.2rem solid #46a35e;
+    box-shadow: 0 0 0.2rem #46a35e, 0 0 0.2rem #46a35e, 0 0 2rem #46a35e,
+      0 0 0.8rem #46a35e, 0 0 2.8rem #46a35e, inset 0 0 1.3rem #46a35e;
+  }
+  .item {
+    background-color: white;
+    color: black;
+    width: 100%;
+  }
 }
 .line {
   margin-left: calc(1.25rem + 40px);
   margin-top: calc(1.25rem + 40px);
   --bs-border-opacity: 1;
-  border-color: rgba(var(--bs-secondary-rgb),var(--bs-secondary-opacity)) !important;
+  border-color: rgba(
+    var(--bs-secondary-rgb),
+    var(--bs-secondary-opacity)
+  ) !important;
 }
 .completed .line {
   --bs-border-opacity: 1;
-  border-color: rgba(var(--bs-success-rgb),var(--bs-border-opacity)) !important;
+  border-color: rgba(
+    var(--bs-success-rgb),
+    var(--bs-border-opacity)
+  ) !important;
+}
+.vertical-line {
+  position: absolute;
+  left: 47px;
+  top: 43px;
+  border-left: solid 1px white;
+  height: 100%;
+}
+
+.vertical-line.completed {
+  border-left: solid 3px 46a35e;
 }

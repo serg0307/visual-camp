@@ -70,16 +70,17 @@
 
 <div class="accordion text-secondary border-0" id="accordionExample">
   <!-- audio -->
-  <div class="accordion-item bg-transparent border-0 position-relative">
-
+  <div class="accordion-item bg-transparent border-0 position-relative  {{isCurrent() == 'audio'? 'active': workflow.stages.audio.completed? 'completed' :''}}">
+    <div class="vertical-line ms-3 {{workflow.stages.audio.completed? 'completed' :''}}"></div>
     <h2 class="accordion-header" id="headingOne">
       <div class="accordion-button bg-transparent border-0 {{isCurrent() == 'audio'? '': 'collapsed'}}" type="button"
-        data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         <div
-          class="icon p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3 {{isCurrent() == 'audio'? 'active': workflow.stages.audio.completed? 'completed' :''}}">
+          class="icon {{ workflow.stages.audio.completed? '' :'bg-black'}} highlight p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3 {{isCurrent() == 'audio'? 'active': workflow.stages.audio.completed? 'completed' :''}}">
           <img src="/assets/images/stage-icons/audio_icon.png" alt="" class="w-100 mx-2">
         </div>
-        <div class="display-6 text-secondary">Audio</div>
+        <div class="display-6 text-secondary col-2">Audio </div>
+        <div *ngIf="workflow.stages.audio.declined" class="text-danger display-6">Rejected by client!</div>
         <app-stage-result [stage]="workflow.stages.audio"></app-stage-result>
       </div>
     </h2>
@@ -92,62 +93,65 @@
     </div>
   </div>
   <!-- atmosphere -->
-  <div class="accordion-item bg-transparent border-0">
+  <div class="accordion-item bg-transparent border-0 position-relative {{isCurrent() == 'atmosphere'? 'active': workflow.stages.atmosphere.completed? 'completed' :''}}">
+    <div class="vertical-line ms-3 {{workflow.stages.atmosphere.completed? 'completed' :''}}"></div>
     <h2 class="accordion-header" id="headingAtmpshere">
-      <div class="accordion-button bg-transparent border-0 overflow-hidden" type="button" data-bs-toggle="collapse"
-        data-bs-target="#collapseAtmosphere" aria-expanded="true" aria-controls="collapseAtmosphere">
+      <div class="accordion-button bg-transparent border-0 overflow-hidden {{isCurrent() == 'atmosphere'? '': 'collapsed'}}" type="button" data-bs-toggle="collapse"
+        aria-expanded="true" aria-controls="collapseAtmosphere">
         <div
-          class="icon p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3 {{isCurrent() == 'atmosphere'? 'active': workflow.stages.atmosphere.completed? 'completed' :''}}">
+          class="icon {{ workflow.stages.atmosphere.completed? '' :'bg-black'}} highlight p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3 ">
           <img src="/assets/images/stage-icons/atmosphere_icon.png" alt="" class="w-100 mx-2">
         </div>
-        <div class="display-6 text-secondary">Atmosphere</div>
-        <app-stage-result [stage]="workflow.stages.atmosphere"></app-stage-result>
+        <div class="display-6 text-secondary col-2">Atmosphere</div>
+        <app-stage-result *ngIf="workflow.stages.atmosphere.completed" [stage]="workflow.stages.atmosphere"></app-stage-result>
       </div>
     </h2>
     <div id="collapseAtmosphere" class="accordion-collapse collapse {{isCurrent() == 'atmosphere'? 'show': ''}}"
       aria-labelledby="headingAtmpshere" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
+      <div class="accordion-body d-flex">
         <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 "></div>
-        <app-stage-atmosphere [stage]="workflow.stages.atmosphere"></app-stage-atmosphere>
+        <app-stage-atmosphere [stage]="workflow.stages.atmosphere"  style="opacity: .8; width: calc(100% - 87px);"></app-stage-atmosphere>
       </div>
     </div>
   </div>
   <!-- animatic -->
-  <div class="accordion-item bg-transparent border-0 position-relative">
+  <div class="accordion-item bg-transparent border-0 {{isCurrent() == 'animation'? 'active': workflow.stages.animation.completed? 'completed' :''}} position-relative">
+    <div class="vertical-line ms-3 {{workflow.stages.animation.completed? 'completed' :''}}"></div>
     <h2 class="accordion-header" id="headingAnimatic">
-      <div class="accordion-button bg-transparent border-0 overflow-hidden" type="button" data-bs-toggle="collapse"
-        data-bs-target="#collapseAnimatic" aria-expanded="true" aria-controls="collapseAnimatic">
+      <div class="accordion-button bg-transparent border-0 overflow-hidden {{isCurrent() == 'animation'? '': 'collapsed'}}" type="button" data-bs-toggle="collapse"
+        aria-expanded="true" aria-controls="collapseAnimatic">
         <div
-          class="icon p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3 {{isCurrent() == 'animation'? 'active': workflow.stages.audio.completed? 'completed' :''}}">
+          class="icon {{ workflow.stages.animation.completed? '' :'bg-black'}} highlight p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3 {{isCurrent() == 'animation'? 'active': workflow.stages.audio.completed? 'completed' :''}}">
           <img src="/assets/images/stage-icons/animatic_icon.png" alt="" class="w-100 mx-2">
         </div>
-        <div class="d-flex w-50">
-          <div class="display-6 text-secondary">Animatic</div>
+
+          <div class="display-6 text-secondary col-2">Animatic</div>
+          <div *ngIf="workflow.stages.animation.declined" class="text-danger display-6">Rejected by client!</div>
           <app-stage-result [stage]="workflow.stages.animation"></app-stage-result>
-        </div>
+
       </div>
     </h2>
     <div id="collapseAnimatic" class="accordion-collapse collapse {{isCurrent() == 'animation'? 'show': ''}}"
       aria-labelledby="headingAnimatic" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
+      <div class="accordion-body d-flex">
         <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 "></div>
         <app-stage-animatic *ngIf="isCurrent() == 'animation'" [stage]="workflow.stages.animation"></app-stage-animatic>
       </div>
     </div>
   </div>
   <!-- visual -->
-  <div class="accordion-item bg-transparent border-0">
+  <div class="accordion-item bg-transparent border-0  {{isCurrent() == 'animation'? 'active': workflow.stages.visual.completed? 'completed' :''}} position-relative">
 
     <h2 class="accordion-header" id="headingVisual">
-      <button class="accordion-button bg-transparent border-0" type="button" data-bs-toggle="collapse"
-        data-bs-target="#collapseVisual" aria-expanded="true" aria-controls="collapseVisual">
+      <div class="accordion-button bg-transparent border-0" type="button" data-bs-toggle="collapse"
+        aria-expanded="true" aria-controls="collapseVisual">
         <div
-          class="icon p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3 {{isCurrent() == 'visual'? 'active': workflow.stages.audio.completed? 'completed' :''}}">
+          class="icon {{ workflow.stages.visual.completed? '' :'bg-black'}} p-0 d-flex align-items-center justify-content-center rounded-circle ms-0 m-3">
           <img src="/assets/images/stage-icons/visual_icon.png" alt="" class="w-100 mx-2">
         </div>
-        <div class="display-6 text-secondary">Visual</div>
+        <div class="display-6 text-secondary col-2">Visual</div>
 
-      </button>
+      </div>
     </h2>
     <div id="collapseVisual" class="accordion-collapse collapse {{isCurrent() == 'visual'? 'show': ''}}"
       aria-labelledby="headingVisual" data-bs-parent="#accordionExample">
@@ -158,3 +162,7 @@
     </div>
   </div>
 </div>
+<app-decline-dialog [stage]="workflow.stages.audio"></app-decline-dialog>
+<app-decline-dialog [stage]="workflow.stages.atmosphere"></app-decline-dialog>
+<app-decline-dialog [stage]="workflow.stages.animation"></app-decline-dialog>
+<app-decline-dialog [stage]="workflow.stages.visual"></app-decline-dialog>

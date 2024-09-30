@@ -23,11 +23,10 @@ export class DrupalService {
     return env_enum.BACKEND_URL;
   }
   async login(): Promise<boolean> {
-    const userData = await JsonApiUser.Login({name: 'dev', pass: '0o9i8u7y'});
+    const userData = await JsonApiUser.Login({name: 'visualcamp', pass: ')Lcx7&8bjgFR8bE'});
     const client = new DrupalClient();
     client.authorize(userData.access_token);
     this.token = userData.access_token;
-    console.log(userData);
     return userData.access_token? true: false;
   }
   async getCollection(settings: JsonApiSettings): Promise<JsonApiEntity[]> {
@@ -57,17 +56,19 @@ export class DrupalService {
     }
     throw new Error(`Invalid id provided (${id})`);
   }
-  async update(entity: JsonApiEntity, token: string): Promise<JsonApiEntity> {
+  async update(entity: JsonApiEntity, token: string = ''): Promise<JsonApiEntity> {
     if (!entity.id) {
       return <JsonApiEntity>{};
     }
-    const uidFieldValue = entity.get('uid');
-    const uid = uidFieldValue.data.meta.drupal_internal__target_id;
-    if (uid != JWT.getUidFromToken(token)) {
-      throw new Error('Can edit own material only.');
+    if (token == '') {
+      token == this.token;
+      console.log(this.token);
     }
+
+    //const uidFieldValue = entity.get('uid');
+    //const uid = uidFieldValue.data.meta.drupal_internal__target_id;
     const client = new DrupalClient();
-    client.authorize(JWT.refineToken(token));
+    client.authorize(this.token);
     return await client.Update(entity);
   }
   async create(entity: JsonApiEntity, token: string): Promise<JsonApiEntity> {

@@ -1,4 +1,5 @@
 <div class="d-flex mt-3 position-relative" *ngFor="let item of stage.items; let i = index;">
+
   <div class="display-6 ms-3">{{i +1 }}</div>
   <div class="flex-grow-1 mx-3">
     <div class="row">
@@ -14,5 +15,9 @@
   <div *ngIf="item.fileUrlProd" class="d-flex flex-column me-3 position-absolute bottom-0 end-0 mb-3">
     <div class="flex-grow-1"></div>
     <button class="btn btn-success mx-3">OK</button>
+  </div>
+  <div class="d-flex m-3 mt-0">
+    <button class="btn btn-success px-3" (click)="select(item)">Accept</button>
+    <button class="btn btn-outline-danger mx-3" data-bs-toggle="modal" [attr.data-bs-target]="'#' + stage.title + 'Modal'">Reject</button>
   </div>
 </div>

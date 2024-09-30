@@ -10,6 +10,9 @@ export interface WorkflowStage {
   items: WorkflowItem[];
   result?: WorkflowItem[];
   completed: boolean;
+  declined?: boolean;
+  declineText?: string;
+  isApproveStage?: boolean;
 }
 
 export interface WorkflowItem {

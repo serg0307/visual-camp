@@ -8,6 +8,7 @@ import { WorkflowStage, WorkflowItem } from 'src/app/interfaces/workflow';
 })
 export class StageVisualComponent {
   @Input() stage: WorkflowStage = <WorkflowStage>{};
+
   select(item: WorkflowItem) {
     this.stage.result = [item];
     if (this.stage.result.length == this.stage.items.length) {
