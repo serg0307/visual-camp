@@ -20,7 +20,7 @@ export class WorkflowPageComponent {
       this.workflow.title = node.attributes.title;
       const stages = await this.workflowService.getProjectWorkflowStages(node.attributes.drupal_internal__nid);
       stages.map((stage: any) => {
-        switch (stage.relationships.field_stage_type.data.meta.drupal_internal__target_id) {
+        switch (stage.relationships.field_stage_type.data?.meta.drupal_internal__target_id) {
           case 18:
             console.log('audio', stage);
             const stageAudio: WorkflowStage = {
@@ -142,23 +142,24 @@ export class WorkflowPageComponent {
               stageVisual.items.push(i);
             });
             stageVisual.result = [];
-            stage.relationships.field_result.data.forEach((item:any) => {
-              const inc = stage.included.find((el: any) => el.id == item.id);
-              const i: WorkflowItem = {
-                id: item.id,
-                title: inc.attributes.filename.split('.')[0],
-                fileUrl: 'https://admin.visualcamp.com.ua/'+inc.attributes.uri.url,
-                fileType: FileTypesEnum.VIDEO,
-                description: ''
-              }
-              stageVisual.result?.push(i);
-            });
-            this.workflow.stages.visual.push(stageVisual);
-            console.log('stageVisual', stageVisual)
+            if (stage.relationships.field_result.data) {
+              stage.relationships.field_result.data.forEach((item:any) => {
+                const inc = stage.included.find((el: any) => el.id == item.id);
+                const i: WorkflowItem = {
+                  id: item.id,
+                  title: inc.attributes.filename.split('.')[0],
+                  fileUrl: 'https://admin.visualcamp.com.ua/'+inc.attributes.uri.url,
+                  fileType: FileTypesEnum.VIDEO,
+                  description: ''
+                }
+                stageVisual.result?.push(i);
+              });
+              this.workflow.stages.visual.push(stageVisual);
+            }
             break;
 
           default:
-            console.log('default', stage.relationships.field_stage_type.data.meta.drupal_internal__target_id)
+
             break;
         }
       });
@@ -184,5 +185,22 @@ export class WorkflowPageComponent {
       return 'animation';
     }
     return 'visual';
+  }
+  getResult(stage: any):WorkflowItem[]  {
+    const result:WorkflowItem[] = [];
+    if (stage.relationships.field_result.data) {
+      stage.relationships.field_result.data.forEach((item:any) => {
+        const inc = stage.included.find((el: any) => el.id == item.id);
+        const i: WorkflowItem = {
+          id: item.id,
+          title: inc.attributes.filename.split('.')[0],
+          fileUrl: 'https://admin.visualcamp.com.ua/'+inc.attributes.uri.url,
+          fileType: FileTypesEnum.VIDEO,
+          description: ''
+        }
+        result?.push(i);
+      });
+    }
+    return result;
   }
 }
