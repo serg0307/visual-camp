@@ -1,5 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
-import { FileTypesEnum, Workflow, WorkflowItem, WorkflowStage } from 'src/app/interfaces/workflow';
+import { DomSanitizer } from '@angular/platform-browser';
+import { FileTypesEnum, Workflow, WorkflowItem, WorkflowStage, WorkflowStageType } from 'src/app/interfaces/workflow';
 import { WorkflowService } from 'src/app/services/workflow.service';
 
 @Component({
@@ -9,8 +10,10 @@ import { WorkflowService } from 'src/app/services/workflow.service';
 })
 export class WorkflowPageComponent {
   @Input() id = '';
+  completed = false;
   workflow: Workflow = <Workflow>{};
   private workflowService = inject(WorkflowService);
+  public sanitizer = inject(DomSanitizer);
   async ngOnInit(): Promise<void> {
     this.workflow = this.workflowService.getWorkflow();
     const nodes = await this.workflowService.getProjectWorkflow(this.id);
@@ -18,17 +21,28 @@ export class WorkflowPageComponent {
       const node: any = nodes.pop();
       this.workflow.id = this.id;
       this.workflow.title = node.attributes.title;
+      this.workflow.resultTitle = node.attributes['field_result_title'];
+      this.workflow.result = node.attributes['field_result']['processed'];
+      this.workflow.completed = node.attributes['field_completed'];
       const stages = await this.workflowService.getProjectWorkflowStages(node.attributes.drupal_internal__nid);
       stages.map((stage: any) => {
+        const type = stage.included.find((el: any) => el.id == stage.relationships.field_stage_type.data?.id);
+        const stageType: WorkflowStageType = {
+          activeTitle: type.attributes['field_active_title'],
+          activeDescription: type.attributes['field_active_description'],
+          showResultInHeader: type.attributes['field_show_result_in_header'],
+          title: type.attributes.title,
+        };
+
         switch (stage.relationships.field_stage_type.data?.meta.drupal_internal__target_id) {
           case 18:
-            console.log('audio', stage);
             const stageAudio: WorkflowStage = {
               id: stage.id,
               title: 'Audio',
               items: [],
               completed: stage.attributes.field_completed,
               declined: stage.attributes.field_declined,
+              type: stageType,
             }
             if (stageAudio.completed) {
               stageAudio.result = [];
@@ -65,8 +79,8 @@ export class WorkflowPageComponent {
               items: [],
               completed: stage.attributes.field_completed,
               declined: stage.attributes.field_declined,
+              type: stageType,
             }
-            console.log('atmosphere', stageAtmosphere);
             this.workflow.stages.atmosphere = stageAtmosphere;
             if (stageAtmosphere.completed) {
               stageAtmosphere.result = [];
@@ -90,6 +104,7 @@ export class WorkflowPageComponent {
               items: [],
               completed: stage.attributes.field_completed,
               declined: stage.attributes.field_declined,
+              type: stageType,
             }
             stage.relationships.field_items.data.forEach((item:any) => {
               const inc = stage.included.find((el: any) => el.id == item.id);
@@ -129,6 +144,7 @@ export class WorkflowPageComponent {
               items: [],
               completed: stage.attributes.field_completed,
               declined: stage.attributes.field_declined,
+              type: stageType,
             }
             stage.relationships.field_items.data.forEach((item:any) => {
               const inc = stage.included.find((el: any) => el.id == item.id);
@@ -164,7 +180,6 @@ export class WorkflowPageComponent {
         }
       });
       this.workflowService.addDefaultFiles(this.workflow.stages.atmosphere);
-      console.log('workflow', this.workflow);
     }
   }
 
@@ -184,7 +199,18 @@ export class WorkflowPageComponent {
     if (!this.workflow.stages.animation.completed) {
       return 'animation';
     }
-    return 'visual';
+    // need to run over
+    let res = true;
+    this.workflow.stages.visual.forEach(el => {
+      if (!el.completed) {
+        res = false;
+      }
+    });
+    if (!res) {
+      return 'visual';
+    }
+    return 'fire';
+
   }
   getResult(stage: any):WorkflowItem[]  {
     const result:WorkflowItem[] = [];

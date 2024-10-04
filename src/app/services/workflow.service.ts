@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FileTypesEnum, Workflow, WorkflowItem, WorkflowStage } from '../interfaces/workflow';
+import { FileTypesEnum, Workflow, WorkflowItem, WorkflowStage, WorkflowStageType } from '../interfaces/workflow';
 import { DrupalService } from 'projects/drupal/src/public-api';
 import { FilterOperator } from 'projects/drupal/src/lib/DrupalApi/enum';
 import { JsonApiSettings } from 'projects/drupal/src/lib/DrupalApi/jsonapi-settings';
@@ -31,7 +31,7 @@ export class WorkflowService {
   async getProjectWorkflowStages(nid: number) {
     const settings = new JsonApiSettings();
     settings.entityBundle = { type: 'comment', bundle: 'project_flow_stage' };
-    settings.include = ['field_items', 'field_result'];
+    settings.include = ['field_items', 'field_result','field_stage_type'];
     settings.addFilter('entity_id.meta.drupal_internal__target_id', nid.toString(), FilterOperator.EQUAL);
     const res = await this.drupal.getCollection(settings);
     return res;
@@ -62,25 +62,29 @@ export class WorkflowService {
           title: 'Audio',
           id: '',
           completed: false,
-          items: [
-          ]
+          items: [],
+          type: <WorkflowStageType>{},
         },
         atmosphere: {
           title: 'Atmosphere',
           id: '',
           completed: false,
-          items: []
+          items: [],
+          type: <WorkflowStageType>{},
         },
         animation: {
           title: 'Animatic',
           id: '',
           completed: false,
-          items: [
-          ],
+          items: [],
           isApproveStage: true,
+          type: <WorkflowStageType>{},
         },
         visual: []
-      }
+      },
+      resultTitle: '',
+      result: '',
+      completed: false
     }
     return wf;
   }

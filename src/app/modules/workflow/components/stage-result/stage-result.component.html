@@ -1,7 +1,7 @@
 <div class="d-flex align-items-center h-100 position-relative" *ngFor="let item of stage.result">
   <div class="flex-grow-1"></div>
-  <div class="mx-3 text-secondary display-6">{{item.title}}</div>
   <audio *ngIf="item.fileType == 'audio'" [src]="item.fileUrl" controls style="width: 300px;"></audio>
   <video *ngIf="item.fileType == 'video'" [src]="item.fileUrl" controls style="width: 300px; height: 80px; object-fit: cover;"></video>
   <img *ngIf="item.fileType == 'image'" [src]="item.fileUrl"  style="width: 300px; height: 80px; object-fit: cover;"/>
+  <div class="mx-3 text-secondary display-6">{{item.title}}</div>
 </div>

@@ -8,9 +8,4 @@ import { WorkflowStage } from 'src/app/interfaces/workflow';
 })
 export class StageResultComponent {
   @Input() stage:WorkflowStage = <WorkflowStage> {};
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    console.log('stage',this.stage);
-  }
 }

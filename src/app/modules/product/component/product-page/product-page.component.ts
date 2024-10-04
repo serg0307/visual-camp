@@ -16,7 +16,6 @@ export class ProductPageComponent {
   ngOnInit(): void {
     this.productService.getOne(this.id).then((data: IProduct[]) => {
       this.product = data;
-      console.log(data[0]);
       this.title = data[0]?.project.title;
     }, function(error) {
       console.log(error);

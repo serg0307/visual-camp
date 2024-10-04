@@ -2,6 +2,9 @@ export interface Workflow {
   id: string;
   title: string;
   stages: WorkflowStagesList;
+  resultTitle: string;
+  result: string;
+  completed: boolean;
 }
 
 export interface WorkflowStage {
@@ -13,6 +16,7 @@ export interface WorkflowStage {
   declined?: boolean;
   declineText?: string;
   isApproveStage?: boolean;
+  type: WorkflowStageType;
 }
 
 export interface WorkflowItem {
@@ -31,7 +35,12 @@ interface WorkflowStagesList {
   animation: WorkflowStage;
   visual: WorkflowStage[];
 }
-
+export interface WorkflowStageType {
+  activeTitle: string;
+  activeDescription: string;
+  showResultInHeader: boolean;
+  title: string;
+}
 export enum FileTypesEnum {
   SOUND = "audio",
   VIDEO = 'video',

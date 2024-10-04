@@ -1,23 +1,23 @@
 <div class="d-flex mt-3 position-relative" *ngFor="let item of stage.items; let i = index;">
 
-  <div class="display-6 ms-3">{{i +1 }}</div>
+  <div class="display-6 ms-3">{{index +1 }}</div>
   <div class="flex-grow-1 mx-3">
     <div class="row">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 position-relative">
         <img [src]="item.fileUrl" alt="" class="w-100">
+        <div class="result-icon d-flex align-items-center justify-content-center" *ngIf="stage.completed || stage.declined"></div>
       </div>
-      <div class="col-12 col-md-6">
-
+      <div class="col-12 col-md-6 position-relative">
         <img *ngFor="let item of stage.result" [src]="item.fileUrl" alt="Production File is not available" class="w-100">
+        <div class="result-icon d-flex align-items-center justify-content-center" *ngIf="stage.completed || stage.declined">
+          <i class="bi bi-check2 text-success" *ngIf="stage.completed"></i>
+          <i class="bi bi-x-lg text-danger" *ngIf="stage.declined"></i>
+        </div>
+        <div class="w-100 text-center my-3" *ngIf="!stage.completed && !stage.declined && stage.result?.length">
+          <i class="bi bi-check-circle-fill fw text-center text-success me-3" (click)="select(item)"></i>
+          <i class="bi bi-x-circle-fill fw text-danger"  data-bs-toggle="modal" [attr.data-bs-target]="'#' + stage.title + 'Modal'"></i>
+        </div>
       </div>
     </div>
-  </div>
-  <div class=" m-3 mt-0">
-    <div class="d-flex {{stage.completed || stage.declined || !stage.result?.length ? 'opacity-0' : ''}}">
-      <button class="btn btn-success px-3" (click)="select(item)" [disabled]="!stage.result?.length">Accept</button>
-      <button class="btn btn-outline-danger mx-3" data-bs-toggle="modal" [attr.data-bs-target]="'#' + stage.title + 'Modal'" [disabled]="!stage.result?.length">Reject</button>
-    </div>
-    <div class="display-1 text-success" *ngIf="stage.completed">V</div>
-    <div class="display-1 text-danger" *ngIf="stage.declined">!</div>
   </div>
 </div>

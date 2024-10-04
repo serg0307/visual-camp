@@ -9,6 +9,7 @@ import { WorkflowService } from 'src/app/services/workflow.service';
 })
 export class StageVisualComponent {
   @Input() stage: WorkflowStage = <WorkflowStage>{};
+  @Input() index = 0;
   constructor(private workflow: WorkflowService) {}
   select(item: WorkflowItem) {
     this.stage.completed = true;
