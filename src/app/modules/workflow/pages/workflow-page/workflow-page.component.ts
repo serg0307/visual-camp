@@ -22,7 +22,11 @@ export class WorkflowPageComponent {
       this.workflow.id = this.id;
       this.workflow.title = node.attributes.title;
       this.workflow.resultTitle = node.attributes['field_result_title'];
-      this.workflow.result = node.attributes['field_result']['processed'];
+      if (node.attributes['field_result']) {
+        this.workflow.result = node.attributes['field_result'].processed;
+      } else {
+        this.workflow.result = '';
+      }
       this.workflow.completed = node.attributes['field_completed'];
       const stages = await this.workflowService.getProjectWorkflowStages(node.attributes.drupal_internal__nid);
       stages.map((stage: any) => {
@@ -163,9 +167,9 @@ export class WorkflowPageComponent {
                 const inc = stage.included.find((el: any) => el.id == item.id);
                 const i: WorkflowItem = {
                   id: item.id,
-                  title: inc.attributes.filename.split('.')[0],
+                  title: '',
                   fileUrl: 'https://admin.visualcamp.com.ua/'+inc.attributes.uri.url,
-                  fileType: FileTypesEnum.VIDEO,
+                  fileType: FileTypesEnum.IMAGE,
                   description: ''
                 }
                 stageVisual.result?.push(i);

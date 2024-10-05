@@ -10,7 +10,7 @@
     <div id="collapseOne" class="accordion-collapse collapse {{isCurrent() == 'audio'? 'show': ''}}"
       aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body d-flex">
-        <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 "></div>
+        <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 bg-transparent"></div>
         <app-stage-audio *ngIf="isCurrent() == 'audio'" [stage]="workflow.stages.audio"></app-stage-audio>
       </div>
     </div>
@@ -25,7 +25,7 @@
     <div id="collapseAtmosphere" class="accordion-collapse collapse {{isCurrent() == 'atmosphere'? 'show': ''}}"
       aria-labelledby="headingAtmpshere" data-bs-parent="#accordionExample">
       <div class="accordion-body d-flex">
-        <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 "></div>
+        <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 bg-transparent"></div>
         <app-stage-atmosphere [stage]="workflow.stages.atmosphere"
           style="opacity: .8; width: calc(100% - 87px);"></app-stage-atmosphere>
       </div>
@@ -41,7 +41,7 @@
     <div id="collapseAnimatic" class="accordion-collapse collapse {{isCurrent() == 'animation'? 'show': ''}}"
       aria-labelledby="headingAnimatic" data-bs-parent="#accordionExample">
       <div class="accordion-body d-flex">
-        <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 "></div>
+        <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 bg-transparent"></div>
         <app-stage-animatic *ngIf="isCurrent() == 'animation'" [stage]="workflow.stages.animation"></app-stage-animatic>
       </div>
     </div>
@@ -70,7 +70,10 @@
       <div *ngIf="isCurrent() == 'fire'" class="display-6 text-secondary col-2 ps-5">{{workflow.resultTitle}}</div>
     </div>
   </div>
-  <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(workflow.result)" class="w-100 text-center"></div>
+  <div class="accordion-body d-flex">
+    <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 bg-transparent "></div>
+    <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(workflow.result)" class="w-100 px-5"></div>
+  </div>
 </div>
 <app-decline-dialog [stage]="workflow.stages.audio"></app-decline-dialog>
 <app-decline-dialog [stage]="workflow.stages.atmosphere"></app-decline-dialog>

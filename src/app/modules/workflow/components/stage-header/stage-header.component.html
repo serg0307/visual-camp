@@ -1,8 +1,8 @@
-<div *ngIf="stage" class="accordion-button {{current? '': 'bg-transparent'}} p-0 border-0" type="button" data-bs-toggle="collapse"
+<div *ngIf="stage" class="accordion-button {{current? 'active': 'bg-transparent'}} p-0 border-0" type="button" data-bs-toggle="collapse"
   aria-expanded="true" aria-controls="collapseVisual">
   <div class="py-3 pe-0 px-20 bg-native">
 
-    <div class="icon {{ stage.completed ? 'completed' :'bg-black'}} position-relative d-flex align-items-center justify-content-center rounded-circle my-3 me-3">
+    <div class="icon {{ stage.completed ? 'completed' : current? 'highlight': 'bg-secondary'}} position-relative d-flex align-items-center justify-content-center rounded-circle my-3 me-3">
       <img [src]="iconUrl" alt="" class="w-100 mx-2">
     </div>
   </div>
