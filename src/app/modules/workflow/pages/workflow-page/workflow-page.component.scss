@@ -89,3 +89,19 @@
 .accordion-button:hover {
   z-index: unset;
 }
+.render-coop {
+  position: absolute;
+  top: 0;
+  left: 400px;
+  color: var(--surface-light);
+  z-index: 5;
+}
+.courier {
+  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+}
+.project-name {
+  position: absolute;
+  top: 120px;
+  left: 420px;
+  z-index: 5;
+}
