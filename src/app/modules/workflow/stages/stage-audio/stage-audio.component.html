@@ -4,6 +4,7 @@
     <audio [src]="item.fileUrl" controls></audio>
 
     <button class="btn btn-success mx-3" (click)="select(item)" [disabled]="stage.declined">This one!</button>
+    <button class="btn btn-success px-3" data-bs-toggle="modal" [attr.data-bs-target]="'#' + stage.title + 'ModalAccept'" (click)="setResult(item)">Accept</button>
   </div>
   <div class="d-flex justify-content-end mx-3">
     <button *ngIf="!stage.declined" class="btn btn-outline-danger mx-3" data-bs-toggle="modal" [attr.data-bs-target]="'#' + stage.title + 'Modal'">None are good</button>

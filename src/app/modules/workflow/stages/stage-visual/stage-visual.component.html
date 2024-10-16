@@ -14,8 +14,8 @@
           <i class="bi bi-x-lg text-danger" *ngIf="stage.declined"></i>
         </div>
         <div class="w-100 text-center my-3" *ngIf="!stage.completed && !stage.declined && stage.result?.length">
-          <i class="bi bi-check-circle-fill fw text-center text-success me-3" (click)="select(item)"></i>
-          <i class="bi bi-x-circle-fill fw text-danger"  data-bs-toggle="modal" [attr.data-bs-target]="'#' + stage.title + 'Modal'"></i>
+          <button class="btn btn-success px-3" (click)="select(item)">Accept</button>
+          <button class="btn btn-outline-danger mx-3" data-bs-toggle="modal" [attr.data-bs-target]="'#' + stage.title + 'Modal'">Reject</button>
         </div>
       </div>
     </div>

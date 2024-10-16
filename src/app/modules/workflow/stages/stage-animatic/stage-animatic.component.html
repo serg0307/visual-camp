@@ -1,10 +1,11 @@
-<div class="text-center w-100 m-auto" *ngFor="let item of stage.items; let i = index;">
-  <div class="d-flex m-3 mt-0" *ngIf="i==0 && !stage.declined">
-    <button class="btn btn-success px-3" (click)="select(item)">Accept</button>
-    <button class="btn btn-outline-danger mx-3" data-bs-toggle="modal" [attr.data-bs-target]="'#' + stage.title + 'Modal'">Reject</button>
-  </div>
+<div class="text-center w-100 m-auto px-3" *ngFor="let item of stage.items; let i = index;">
   <div class="d-flex m-3 mt-0 text-danger display-6" *ngIf="i!=0">
     Rejected version {{i}}
   </div>
   <video [src]="item.fileUrl" controls class=""></video>
+  <div class="d-flex m-3 w-100" *ngIf="i==0 && !stage.declined">
+    <div class="flex-grow-1"></div>
+    <button class="btn btn-success px-3" data-bs-toggle="modal" [attr.data-bs-target]="'#' + stage.title + 'ModalAccept'" (click)="setResult(item)">Accept</button>
+    <button class="btn btn-outline-danger mx-3" data-bs-toggle="modal" [attr.data-bs-target]="'#' + stage.title + 'Modal'">Reject</button>
+  </div>
 </div>

@@ -13,6 +13,7 @@ import { ProgressSidebarComponent } from './components/progress-sidebar/progress
 import { StageResultComponent } from './components/stage-result/stage-result.component';
 import { DeclineDialogComponent } from './UI/decline-dialog/decline-dialog.component';
 import { StageHeaderComponent } from './components/stage-header/stage-header.component';
+import { AcceptDialogComponent } from './UI/accept-dialog/accept-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { StageHeaderComponent } from './components/stage-header/stage-header.com
     StageResultComponent,
     DeclineDialogComponent,
     StageHeaderComponent,
+    AcceptDialogComponent,
   ],
   imports: [
     CommonModule,

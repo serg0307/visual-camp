@@ -11,8 +11,11 @@ export class StageAtmosphereComponent {
   @Input() stage: WorkflowStage = <WorkflowStage>{};
   constructor(private workflow: WorkflowService) {}
   select(item: WorkflowItem) {
-    this.stage.result = [item];
+    this.setResult(item);
     this.stage.completed = true;
     this.workflow.saveStage(this.stage);
+  }
+  setResult(item: WorkflowItem) {
+    this.stage.result = [item];
   }
 }

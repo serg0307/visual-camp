@@ -12,5 +12,5 @@
     <div class="h4">{{stage.type.activeDescription}}</div>
   </div>
   <div *ngIf="stage.type.showResultInHeader && declined" class="text-danger display-6">Rejected by client!</div>
-  <app-stage-result *ngIf="stage.type.showResultInHeader" [stage]="stage"></app-stage-result>
+  <app-stage-result *ngIf="stage.type.showResultInHeader && !current" [stage]="stage"></app-stage-result>
 </div>

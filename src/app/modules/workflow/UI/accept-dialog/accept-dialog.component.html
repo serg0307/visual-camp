@@ -1,0 +1,29 @@
+<!-- Modal -->
+<div class="modal fade" [id]="stage.title + 'ModalAccept'" tabindex="-1" [attr.aria-labelledby]="stage.title + 'ModalAcceptLabel'" >
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="{{stage.title}}ModalAcceptLabel">Accept {{stage.title}}</h1>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div *ngFor="let item of stage.result">
+          <span [ngSwitch]="item.fileType">
+          <div *ngSwitchCase="'image'">
+            <app-image-block [item]="item"></app-image-block>
+          </div>
+          <div *ngSwitchCase="'audio'">
+            <app-sound-block [item]="item"></app-sound-block>
+          </div>
+          <div *ngSwitchDefault>
+          </div>
+          </span>
+        </div>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" (click)="cancel()">Cancel</button>
+        <button type="button" class="btn btn-success" (click)="accept()" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

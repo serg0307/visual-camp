@@ -3,19 +3,20 @@ import { WorkflowItem, WorkflowStage } from 'src/app/interfaces/workflow';
 import { WorkflowService } from 'src/app/services/workflow.service';
 
 @Component({
-  selector: 'app-stage-animatic',
-  templateUrl: './stage-animatic.component.html',
-  styleUrls: ['./stage-animatic.component.scss']
+  selector: 'app-accept-dialog',
+  templateUrl: './accept-dialog.component.html',
+  styleUrls: ['./accept-dialog.component.scss']
 })
-export class StageAnimaticComponent {
+export class AcceptDialogComponent {
   @Input() stage: WorkflowStage = <WorkflowStage>{};
   constructor(private workflow: WorkflowService) {}
-  select(item: WorkflowItem) {
-    this.setResult(item);
+  accept() {
     this.stage.completed = true;
     this.workflow.saveStage(this.stage);
   }
-  setResult(item: WorkflowItem) {
-    this.stage.result = [item];
+  cancel() {
+    if (!this.stage.isApproveStage) {
+      this.stage.result = [];
+    }
   }
 }
