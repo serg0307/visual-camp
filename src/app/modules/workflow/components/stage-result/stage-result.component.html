@@ -1,6 +1,30 @@
-<div class="d-flex align-items-center h-100 position-relative" *ngFor="let item of stage.result">
-  <div class="flex-grow-1"></div>
-  <audio *ngIf="item.fileType == 'audio'" [src]="item.fileUrl" controls style="width: 300px;"></audio>
-  <video *ngIf="item.fileType == 'video'" [src]="item.fileUrl" controls style="width: 300px; height: 80px; object-fit: cover;"></video>
-  <img *ngIf="item.fileType == 'image'" [src]="item.fileUrl"  style="width: 300px; height: 80px; object-fit: cover;"/>
-</div>
+<ng-container *ngFor="let item of stage.result">
+
+
+  <div class="d-flex align-items-center h-100 position-relative">
+    <div class="flex-grow-1"></div>
+    <audio *ngIf="item.fileType == 'audio'" [src]="item.fileUrl" controls style="width: 300px;"></audio>
+
+    <button *ngIf="item.fileType == 'video'" type="button" class="btn btn-outline-light" data-bs-toggle="modal"
+      data-bs-target="#exampleModal" style="width: 300px; height: 80px;">
+      <div class="h3">
+        View Result
+      </div>
+    </button>
+    <img *ngIf="item.fileType == 'image'" [src]="item.fileUrl" style="width: 300px; height: 80px; object-fit: cover;" />
+  </div>
+  <!-- Modal -->
+  <div *ngIf="item.fileType == 'video'" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content bg-dark">
+        <div class="modal-header">
+          <h5 class="text-light mb-0">Approved Animatic</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <video class="w-100" [src]="item.fileUrl" controls></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
