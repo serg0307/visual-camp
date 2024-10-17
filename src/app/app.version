@@ -1,3 +1,5 @@
+1.6.1
+Final result fixed. It is shown now if Final is current stage no meter if it is completed or not.
 1.6
 atmosphere accept dialog image title fixed.
 it displays index+1 instead of file name.
