@@ -109,7 +109,7 @@
     <div class="accordion-body d-flex">
       <div class="icon border-0 d-flex align-items-center justify-content-center rounded-circle ms-0 bg-transparent ">
       </div>
-      <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(workflow.result)" class="w-100 px-5"></div>
+      <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(workflow.result)" class="w-100 px-5" *ngIf="isCurrent() == 'fire'"></div>
     </div>
   </div>
   <app-decline-dialog [stage]="workflow.stages.audio"></app-decline-dialog>
