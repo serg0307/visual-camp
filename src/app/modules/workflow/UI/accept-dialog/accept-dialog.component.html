@@ -10,7 +10,7 @@
         <div *ngFor="let item of stage.result">
           <span [ngSwitch]="item.fileType">
           <div *ngSwitchCase="'image'">
-            <app-image-block [item]="item"></app-image-block>
+            <app-image-block [item]="item" [imageIndex]="getAtmosphereImageIndex(item) + 1"></app-image-block>
           </div>
           <div *ngSwitchCase="'audio'">
             <app-sound-block [item]="item"></app-sound-block>

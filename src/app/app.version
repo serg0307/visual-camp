@@ -1,2 +1,5 @@
+1.6
+atmosphere accept dialog image title fixed.
+it displays index+1 instead of file name.
 1.5
 result for video files replaced with dialog

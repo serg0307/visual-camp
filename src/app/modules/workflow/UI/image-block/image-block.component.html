@@ -1,6 +1,4 @@
-<div class="card my-1">
+<div class="card my-1 position-relative">
   <img [src]="item.fileUrl" class="card-img-top h-100" alt="...">
-  <div class="card-body">
-    <div class="card-title">{{item.title}}</div>
-  </div>
+  <div class="result-icon">{{imageIndex>=0? imageIndex: item.title}}</div>
 </div>

@@ -9,6 +9,7 @@ import { WorkflowService } from 'src/app/services/workflow.service';
 })
 export class AcceptDialogComponent {
   @Input() stage: WorkflowStage = <WorkflowStage>{};
+  @Input() imageIndex: number = -1;
   constructor(private workflow: WorkflowService) {}
   accept() {
     this.stage.completed = true;
@@ -18,5 +19,9 @@ export class AcceptDialogComponent {
     if (!this.stage.isApproveStage) {
       this.stage.result = [];
     }
+  }
+  getAtmosphereImageIndex(item: WorkflowItem) {
+    const i = this.stage.items.findIndex((e) => {return e.id == item.id});
+    return i;
   }
 }

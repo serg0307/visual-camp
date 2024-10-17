@@ -8,4 +8,5 @@ import { WorkflowItem } from 'src/app/interfaces/workflow';
 })
 export class ImageBlockComponent {
   @Input() item: WorkflowItem = <WorkflowItem>{};
+  @Input() imageIndex = -1;
 }
