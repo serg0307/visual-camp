@@ -5,16 +5,18 @@
     <div class="flex-grow-1"></div>
     <audio *ngIf="item.fileType == 'audio'" [src]="item.fileUrl" controls style="width: 300px;"></audio>
 
-    <button *ngIf="item.fileType == 'video'" type="button" class="btn btn-outline-light" data-bs-toggle="modal"
-      data-bs-target="#exampleModal" style="width: 300px; height: 80px;">
-      <div class="h3">
-        View Result
+    <div *ngIf="item.fileType == 'video'" type="button" class="overflow-hidden d-flex align-items-center position-relative" data-bs-toggle="modal"
+      data-bs-target="#videoModal" style="width: 300px; height: 80px;">
+      <video class="w-100" [src]="item.fileUrl"></video>
+      <div class="position-absolute w-100 h-100 d-flex justify-content-center align-items-center">
+        <i class="bi bi-play-circle display-3 text-light"></i>
       </div>
-    </button>
+    </div>
     <img *ngIf="item.fileType == 'image'" [src]="item.fileUrl" style="width: 300px; height: 80px; object-fit: cover;" />
+
   </div>
   <!-- Modal -->
-  <div *ngIf="item.fileType == 'video'" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div *ngIf="item.fileType == 'video'" class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content bg-dark">
         <div class="modal-header">
