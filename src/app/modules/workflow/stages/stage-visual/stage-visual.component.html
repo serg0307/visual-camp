@@ -15,7 +15,7 @@
         </div>
         <div class="w-100 text-center my-3" *ngIf="!stage.completed && !stage.declined && stage.result?.length">
           <button class="btn btn-success px-3" (click)="select(item)">Accept</button>
-          <button class="btn btn-outline-danger mx-3" data-bs-toggle="modal" [attr.data-bs-target]="'#' + stage.title + 'Modal'">Reject</button>
+          <button class="btn btn-outline-danger mx-3" data-bs-toggle="modal" [attr.data-bs-target]="'#Modal--' + stage.id">Reject</button>
         </div>
       </div>
     </div>

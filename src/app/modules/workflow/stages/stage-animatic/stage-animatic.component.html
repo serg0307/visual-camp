@@ -6,6 +6,6 @@
   <div class="d-flex m-3 w-100" *ngIf="i==0 && !stage.declined">
     <div class="flex-grow-1"></div>
     <button class="btn btn-success px-3" (click)="select(item)">Accept</button>
-    <button class="btn btn-outline-danger mx-3" data-bs-toggle="modal" [attr.data-bs-target]="'#' + stage.title + 'Modal'">Reject</button>
+    <button class="btn btn-outline-danger mx-3" data-bs-toggle="modal" [attr.data-bs-target]="'#Modal--' + stage.id">Reject</button>
   </div>
 </div>

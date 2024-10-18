@@ -1,9 +1,9 @@
 <!-- Modal -->
-<div class="modal fade" [id]="stage.title + 'Modal'" tabindex="-1" [attr.aria-labelledby]="stage.title + 'ModalLabel'" >
+<div class="modal fade" [id]="'Modal--' + stage.id" tabindex="-1" [attr.aria-labelledby]="stage.id + 'ModalLabel'" >
   <div class="modal-dialog">
     <div class="modal-content bg-dark">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="{{stage.title}}ModalLabel">Reject proposal</h1>
+        <h1 class="modal-title fs-5" id="{{stage.id}}ModalLabel">Reject proposal</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
