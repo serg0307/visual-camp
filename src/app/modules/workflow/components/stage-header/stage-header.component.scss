@@ -38,3 +38,6 @@
 .accordion-button:not(.collapsed) {
   background-color: var(--bs-accordion-bg);
 }
+.accordion-button {
+  cursor: default;
+}

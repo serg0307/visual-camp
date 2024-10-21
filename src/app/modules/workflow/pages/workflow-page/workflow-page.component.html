@@ -78,10 +78,10 @@
     </div>
     <!-- visual -->
     <div class="accordion-item bg-transparent border-0  {{isCurrent() == 'visual'? 'active': ''}} position-relative">
-      <div class="vertical-line ms-3 {{workflow.stages.animation.completed? 'completed' :''}}"></div>
+      <div class="vertical-line ms-3 {{isVisualCompleted()? 'completed' :''}}"></div>
       <h2 class="accordion-header" id="headingVisual">
         <app-stage-header [current]="isCurrent() == 'visual'" [iconUrl]="'/assets/images/stage-icons/visual_icon.png'"
-          [stage]="workflow.stages.visual[0]"></app-stage-header>
+          [stage]="visualStageData()"></app-stage-header>
       </h2>
       <div id="collapseVisual" class="accordion-collapse collapse {{isCurrent() == 'visual'? 'show': ''}}"
         aria-labelledby="headingVisual" data-bs-parent="#accordionExample">

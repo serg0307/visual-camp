@@ -14,6 +14,7 @@ export class StageAnimaticComponent {
     this.setResult(item);
     this.stage.completed = true;
     this.workflow.saveStage(this.stage);
+    window.scrollTo(0,300);
   }
   setResult(item: WorkflowItem) {
     this.stage.result = [item];

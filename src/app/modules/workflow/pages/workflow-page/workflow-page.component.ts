@@ -186,13 +186,6 @@ export class WorkflowPageComponent {
       this.workflowService.addDefaultFiles(this.workflow.stages.atmosphere);
     }
   }
-
-  yes(stage: WorkflowStage) {
-    stage.completed = true;
-  }
-  no(stage: WorkflowStage) {
-
-  }
   isCurrent(): string {
     if (!this.workflow.stages.audio.completed) {
       return 'audio';
@@ -231,6 +224,39 @@ export class WorkflowPageComponent {
         result?.push(i);
       });
     }
+    return result;
+  }
+  isVisualCompleted(): boolean {
+    const result = this.workflow.stages.visual.find(el => !el.completed || el.declined);
+    if (result) {
+      return false;
+    }
+    return true;
+  }
+  visualStageData(): WorkflowStage {
+    if (this.workflow.stages.visual.length == 0) {
+      return {
+        id: '',
+        title: '',
+        items: [],
+        completed: false,
+        type: {
+          activeTitle: '',
+          activeDescription: '',
+          showResultInHeader: false,
+          title: ''
+        },
+      };
+    }
+    const stage = this.workflow.stages.visual[0];
+    const result: WorkflowStage = {
+      id: stage.id,
+      title: stage.title,
+      items: stage.items,
+      result: stage.result,
+      completed: this.isVisualCompleted(),
+      type: stage.type,
+    };
     return result;
   }
 }
