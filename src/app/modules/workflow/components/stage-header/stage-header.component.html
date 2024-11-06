@@ -3,7 +3,7 @@
   <div class="py-3 pe-0 px-20 bg-native">
 
     <div class="icon {{ stage.completed ? 'completed' : current? 'highlight': 'bg-secondary'}} position-relative d-flex align-items-center justify-content-center rounded-circle my-3 me-3">
-      <img [src]="iconUrl" alt="" class="w-100 mx-2">
+      <img [src]="iconUrl" alt="" class="w-100 px-2">
     </div>
   </div>
   <div *ngIf="!current" class="display-6 text-secondary col-2 ps-5">{{stage.title}}</div>

@@ -1,6 +1,6 @@
 <div class="position-relative item">
   <ng-container *ngIf="item.isVideo; else elseTemplate">
-    <video class="w-100 zoom" autoplay loop>
+    <video class="w-100 zoom" autoplay loop muted>
       <source src="{{item.contentUrl}}" type="video/mp4">
     </video>
   </ng-container>
@@ -13,4 +13,3 @@
     <div class="h3">{{item.title}}</div>
   </div>
 </div>
-
