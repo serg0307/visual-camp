@@ -1,3 +1,9 @@
+1.9.1
+Front page video playback for chrome fixed again.
+Added attributes to video tag:
+
+loop muted autoplay oncanplay="this.play()" onloadedmetadata="this.muted = true"
+
 1.9
 Front page video playback for chrome fixed.
 Workflow icons size for chrome fixed.
