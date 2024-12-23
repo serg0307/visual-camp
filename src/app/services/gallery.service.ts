@@ -21,6 +21,7 @@ export class GalleryService {
     settings.entityBundle = { type: 'node', bundle: 'article' };
     settings.include = ['field_image', 'field_video'];
     settings.pageLimit = 50;
+    settings.sort = 'sort[sort-author][path]=field_order_index&sort[sort-author][direction]=desc';
     const res = await this.drupal.getCollection(settings);
     res.forEach(element => {
       const item: IGalleryItem = {
@@ -28,11 +29,13 @@ export class GalleryService {
         title: '',
         contentUrl: '',
         description: '',
-        images: []
+        images: [],
+        orderIndex: 0,
       }
       item.id = element.get('drupal_internal__nid');
       item.title = element.get('title');
       item.description = element.get('body')?.processed;
+      item.orderIndex = element.get('field_order_index');
       const bg = element.getImages('field_image'); // get relationship object
       bg.forEach(imageEntity => {
         const bgEntity = element.findInIncluded(imageEntity.id); // find included entity

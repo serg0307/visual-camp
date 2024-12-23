@@ -45,7 +45,7 @@ export class WorkflowService {
         const i: WorkflowItem = {
           id: item.id,
           title: inc.attributes.filename.split('.')[0],
-          fileUrl: 'https://admin.visualcamp.com.ua/' + inc.attributes.uri.url,
+          fileUrl: 'https://sp.17oz.xyz/' + inc.attributes.uri.url,
           fileType: FileTypesEnum.IMAGE,
           description: ''
         }

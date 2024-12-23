@@ -4,5 +4,6 @@ export interface IGalleryItem {
   contentUrl: string;
   isVideo?: boolean;
   description: string;
+  orderIndex: number;
   images: string[];
 }

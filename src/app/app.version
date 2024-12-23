@@ -1,3 +1,8 @@
+1.10
+Front page image order changed.
+Added Order Index field to the Article.
+The higher value, the higher position in the list.
+
 1.9.1
 Front page video playback for chrome fixed again.
 Added attributes to video tag:

@@ -32,14 +32,30 @@ export class GalleryListComponent {
   }
   buildColumns() {
     const itemsPerColumn = this.gallery.length / 3;
+    console.log(this.gallery);
     this.gallery.forEach((element, index) => {
-
+      /*
       if (index< itemsPerColumn) {
         this.columns.one.push(element);
       } else if (index< itemsPerColumn *2) {
         this.columns.two.push(element);
       } else {
         this.columns.three.push(element);
+      }
+      /** */
+      switch (index % 3) {
+        case 0:
+          this.columns.one.push(element);
+        break;
+          case 1:
+          this.columns.two.push(element);
+          break;
+        case 2:
+          this.columns.three.push(element);
+          break;
+
+        default:
+          break;
       }
     });
   }

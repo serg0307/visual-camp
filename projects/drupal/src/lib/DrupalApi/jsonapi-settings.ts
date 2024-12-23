@@ -78,9 +78,10 @@ export class JsonApiSettings {
     if (this.include.length > 0) {
       result.push(`include=${this.include.join(',')}`);
     }
-    return `${result.join('&')}&page[limit]=${this.pageLimit}&page[offset]=${this.pageOffset}${this.sort ? '&sort='+this.sort: ''}`;
+    return `${result.join('&')}&page[limit]=${this.pageLimit}&page[offset]=${this.pageOffset}&${this.sort}`;
   }
   buildUrl(): string {
+    console.log(this.buildUrlParameters());
     return `${this.entityBundle.type}/${this.entityBundle.bundle}?${this.buildUrlParameters()}`;
   }
 }
