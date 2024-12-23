@@ -24,3 +24,9 @@
   overflow: hidden;
   margin: 0 auto;
 }
+
+.item.selected {
+  border: 0.2rem solid #46a35e;
+  box-shadow: 0 0 0.2rem #46a35e, 0 0 0.2rem #46a35e, 0 0 2rem #46a35e,
+    0 0 0.8rem #46a35e, 0 0 2.8rem #46a35e, inset 0 0 1.3rem #46a35e;
+}

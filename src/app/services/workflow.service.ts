@@ -104,6 +104,7 @@ export class WorkflowService {
     const data:SaveStageData = {
       stageId: stage.id,
       resultFileId: '',
+      resultFileIds: [],
       feedback: ''
     }
 
@@ -123,6 +124,10 @@ export class WorkflowService {
           data.resultFileId = el.id;
         }
       }
+        stage.result?.forEach((el) => {
+          data.resultFileIds?.push(el.id);
+        })
+        console.log('data',data);
 
       this.http.post(env_enum.BACKEND_URL + '/jsonapi/project_flow/accept', data).subscribe(data => {
         console.log(data);
@@ -135,4 +140,5 @@ interface SaveStageData {
   stageId: string;
   resultFileId: string;
   feedback: string;
+  resultFileIds?: string[];
 }

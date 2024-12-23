@@ -9,13 +9,24 @@ import { WorkflowService } from 'src/app/services/workflow.service';
 })
 export class StageAtmosphereComponent {
   @Input() stage: WorkflowStage = <WorkflowStage>{};
+  result: WorkflowItem[] = [];
   constructor(private workflow: WorkflowService) {}
   select(item: WorkflowItem) {
-    this.setResult(item);
+    const found = this.result.find((el) => el.id == item.id);
+    if (!found) {
+      this.result.push(item);
+    } else {
+      this.result = this.result.filter(el => el.id == item.id);
+    }
+    item.selected = !item.selected;
+    //this.setResult(item);
+    //this.stage.completed = true;
+  }
+  save() {
+    console.log('save');
+    this.stage.result = this.result;
+    console.log(this.stage.result);
     this.stage.completed = true;
     this.workflow.saveStage(this.stage);
-  }
-  setResult(item: WorkflowItem) {
-    this.stage.result = [item];
   }
 }
