@@ -7,4 +7,7 @@ export interface IWebsite {
   backendUrl: string;
   frontPageText: string;
   isActive: boolean;
+  instagram: string;
+  behance: string;
+  linkedIn: string;
 }

@@ -20,7 +20,10 @@ export class WebsiteService {
       logoUrl: '',
       backendUrl: '',
       frontPageText: '',
-      isActive: false
+      isActive: false,
+      instagram: '',
+      behance: '',
+      linkedIn: ''
     }
     const settings = new JsonApiSettings();
     settings.entityBundle = { type: 'node', bundle: 'website' };
@@ -41,6 +44,9 @@ export class WebsiteService {
       });
       item.email = element.get('field_email');
       item.phone = element.get('field_phone');
+      item.behance = element.get('field_behance');
+      item.instagram = element.get('field_instagram');
+      item.linkedIn = element.get('field_linkedin');
       item.isActive = element.get('field_active');
     });
     return item;

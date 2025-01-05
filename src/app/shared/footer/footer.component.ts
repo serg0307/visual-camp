@@ -9,20 +9,29 @@ import { IWebsite } from 'src/app/interfaces/website';
 })
 export class FooterComponent {
   website: IWebsite = <IWebsite>{};
-  constructor(private app: AppComponent) {}
+  constructor(private app: AppComponent) { }
   ngOnInit(): void {
-
+    console.log('app.website', this.app.website);
+  }
+  getLinkedIn() {
+    return this.app.website.linkedIn;
+  }
+  getBehance() {
+    return this.app.website.behance;
+  }
+  getInstagram(): string {
+    return this.app.website.instagram;
   }
   getLogo(): string {
     return this.app.website.logoUrl;
   }
-  getPhone():string {
+  getPhone(): string {
     return <string>this.app.website.phone;
   }
-  getMail():string {
+  getMail(): string {
     return <string>this.app.website.email;
   }
-  getTitle(): string{
+  getTitle(): string {
     return this.app.website.title;
   }
 }
