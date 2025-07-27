@@ -12,7 +12,8 @@ import { WorkflowService } from 'src/app/services/workflow.service';
 export class StageVisualComponent {
   @Input() stage: WorkflowStage = <WorkflowStage>{};
   @Input() index = 0;
-  widthOld = 50;
+  divWidthOld = 0;
+  widthOld = 0;
   isDragging = false;
   constructor(private workflow: WorkflowService) { }
   logTouchstart(event: TouchEvent) {
@@ -27,7 +28,7 @@ export class StageVisualComponent {
   logTouchMove(event: TouchEvent) {
     if (this.isDragging) {
       this.widthOld = event.touches[0].clientX;
-      console.log(event.touches[0].clientX);
+      console.log('clientX', event.touches[0].clientX);
     }
   }
   select(item: WorkflowItem) {
@@ -35,13 +36,20 @@ export class StageVisualComponent {
     this.workflow.saveStage(this.stage);
   }
   handleClick(event: MouseEvent) {
-    const x = event.offsetX;
-    const y = event.clientY;
-    this.widthOld = x;
-    if (x < 50) {
-      this.widthOld = 50;
-    }
+    const e = <any>event;
+    console.log(e.target.nodeName);
 
+    if (e.target.nodeName != 'svg' && e.target.nodeName != 'path' ) {
+      const x = e.offsetX;
+      this.widthOld = x;
+
+      console.log('--- mouse x', x);
+      console.log('e', e);
+      console.log('target', e.target);
+      console.log('target node name', e.target.nodeName);
+    } else {
+      this.widthOld = this.widthOld + e.movementX;
+    }
   }
   mouseDown(event: MouseEvent) {
     this.isDragging = true;

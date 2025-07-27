@@ -13,5 +13,6 @@
   </div>
   <div *ngIf="current" class="display-6 text-secondary mt-3 d-md-none">{{stage.title}}</div>
   <div *ngIf="stage.type.showResultInHeader && stage.declined" class="text-danger display-6">Rejected by client!</div>
-  <app-stage-result *ngIf="stage.type.showResultInHeader && !current" [stage]="stage"></app-stage-result>
+  <app-stage-result *ngIf="stage.type.showResultInHeader && !current" [stage]="stage" class="d-none d-md-block"></app-stage-result>
 </div>
+<app-stage-result *ngIf="stage.type.showResultInHeader && !current" [stage]="stage" class="d-md-none text-start"></app-stage-result>

@@ -26,28 +26,20 @@
   </div>
   <div>
 
-    <div class="image-compare w-100 overflow-hidden position-relative"
-      (click)="handleClick($event)"
-      (mousedown)="mouseDown($event)"
-      (mouseup)="mouseUp($event)"
-      (mousemove)="mouseMove($event)"
-      (touchstart)="logTouchstart($event)"
-      (touchend)="logTouchend($event)"
-      (touchmove)="logTouchMove($event)"
-      >
+    <div class="image-compare w-100 overflow-hidden position-relative" (click)="handleClick($event)"
+      (mousedown)="mouseDown($event)" (mouseup)="mouseUp($event)" (mousemove)="mouseMove($event)"
+      (touchstart)="logTouchstart($event)" (touchend)="logTouchend($event)" (touchmove)="logTouchMove($event)">
 
       <div class="display-6 ms-3 position-absolute zindex-dropdown mt-3" style="z-index:2">{{index +1 }}</div>
-      <span style="width: {{widthOld}}px;">
+      <span style="resize: none;" [style.width]="widthOld == 0? '50%' : widthOld + 'px'">
         <img [src]="item.fileUrl" alt="" draggable="false">
       </span>
-      <div class="position-absolute d-flex h-100 justify-content-center align-items-center"
-        style="z-index: 20;width: {{widthOld*2}}px;">
-        <div>
-
-          <i class="bi bi-chevron-left"></i>
-          <i class="bi bi-chevron-right"></i>
-        </div>
-      </div>
+      <article class="position-absolute d-flex h-100 justify-content-center align-items-center chevron" style="z-index: 1; "
+        [style.width]="widthOld == 0? '100%' : widthOld*2 + 'px'" (click)="undefined">
+        <svg xmlns="http://www.w3.org/2000/svg" class="default-handle" viewBox="-8 -3 16 6" style="z-index: 10; width: 50px;">
+          <path d="M -5 -2 L -7 0 L -5 2 M 5 -2 L 7 0 L 5 2" fill="white" vector-effect="non-scaling-stroke"></path>
+        </svg>
+      </article>
 
       <img *ngFor="let item of stage.result" [src]="item.fileUrl" alt="Production File is not available"
         draggable="false">
