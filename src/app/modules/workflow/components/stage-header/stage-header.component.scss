@@ -41,3 +41,10 @@
 .accordion-button {
   cursor: default;
 }
+
+@media (max-width: 500px) {
+  .stage-title {
+    margin: 0px;
+    width: calc(100% - 308px);
+  }
+}

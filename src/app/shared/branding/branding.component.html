@@ -1,3 +1,4 @@
+<div class=" d-none d-md-block">
 <ng-container *ngIf="isHeader; else elseTemplate">
   <div class="{{scheme}} d-flex">
     <img [src]="getLogo()" class="navbar-brand">
@@ -10,9 +11,10 @@
   <div class="{{scheme}} d-flex not-header my-2">
     <img [src]="getLogo()" class="navbar-brand">
 
-    <div class="brand d-none d-md-block">{{getTitle()}}</div>
+    <div class="brand">{{getTitle()}}</div>
   </div>
 
 </ng-template>
 
 
+</div>

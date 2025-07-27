@@ -1,4 +1,4 @@
-<footer class="container-fluid mt-5">
+<footer class="container-fluid mt-5 d-none d-md-block">
   <div class="container-fluid d-flex align-items-start flex-md-row overflow-hidden">
     <app-branding [scheme]="'light'" [isHeader]="false" class="m-auto d-none d-md-block"></app-branding>
     <div role="search" class="bg-light text-end w-100 my-auto">
@@ -9,4 +9,14 @@
       <div *ngIf="getLinkedIn()" class="phone"><a [href]="getLinkedIn()"  target="_blank" class="link-secondary">LinkedIn</a></div>
     </div>
   </div>
+</footer>
+
+<footer class="container-fluid mt-5 d-md-none d-flex py-3 align-items-center">
+  <div class="small-logo me-3 d-flex align-items-center">
+    <img src="/assets/images/Logo-2.png" class="w-100" >
+  </div>
+
+  <img src="/assets/images/Timeline_1_01_00_00_00_.jpg" class="small-logo">
+  <div class="flex-grow-1"></div>
+  <div>©2025 Visual Camp</div>
 </footer>

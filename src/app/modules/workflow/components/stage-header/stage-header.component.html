@@ -1,16 +1,17 @@
 <div *ngIf="stage" class="accordion-button {{current? 'active': 'bg-transparent'}} p-0 border-0" type="button" data-bs-toggle="collapse"
   aria-expanded="true" aria-controls="collapseVisual">
-  <div class="py-3 pe-0 px-20 bg-native">
+  <div class="py-3 pe-0 px-20 bg-native d-none d-md-block">
 
     <div class="icon {{ stage.completed ? 'completed' : current? 'highlight': 'bg-secondary'}} position-relative d-flex align-items-center justify-content-center rounded-circle my-3 me-3">
       <img [src]="iconUrl" alt="" class="w-100 px-2">
     </div>
   </div>
-  <div *ngIf="!current" class="display-6 text-secondary col-2 ps-5">{{stage.title}}</div>
-  <div *ngIf="current" class="text-secondary ps-5">
+  <div *ngIf="!current" class="display-6 text-secondary col-2 ps-md-5 stage-title">{{stage.title}}</div>
+  <div *ngIf="current" class="text-secondary ps-5 d-none d-md-block">
     <div class="display-6">{{stage.type.activeTitle}}</div>
     <div class="h4">{{stage.type.activeDescription}}</div>
   </div>
+  <div *ngIf="current" class="display-6 text-secondary mt-3 d-md-none">{{stage.title}}</div>
   <div *ngIf="stage.type.showResultInHeader && stage.declined" class="text-danger display-6">Rejected by client!</div>
   <app-stage-result *ngIf="stage.type.showResultInHeader && !current" [stage]="stage"></app-stage-result>
 </div>
