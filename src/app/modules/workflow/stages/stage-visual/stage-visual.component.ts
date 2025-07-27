@@ -27,7 +27,7 @@ export class StageVisualComponent {
   }
   logTouchMove(event: TouchEvent) {
     if (this.isDragging) {
-      this.widthOld = event.touches[0].clientX;
+      this.widthOld = event.touches[0].clientX-25;
       console.log('clientX', event.touches[0].clientX);
     }
   }
@@ -42,11 +42,6 @@ export class StageVisualComponent {
     if (e.target.nodeName != 'svg' && e.target.nodeName != 'path' ) {
       const x = e.offsetX;
       this.widthOld = x;
-
-      console.log('--- mouse x', x);
-      console.log('e', e);
-      console.log('target', e.target);
-      console.log('target node name', e.target.nodeName);
     } else {
       this.widthOld = this.widthOld + e.movementX;
     }
