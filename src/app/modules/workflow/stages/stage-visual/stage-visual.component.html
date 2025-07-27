@@ -26,8 +26,15 @@
   </div>
   <div>
 
-    <div class="image-compare w-100 overflow-hidden position-relative" (click)="handleClick($event)"
-      (mousedown)="mouseDown($event)" (mouseup)="mouseUp($event)" (mousemove)="mouseMove($event)">
+    <div class="image-compare w-100 overflow-hidden position-relative"
+      (click)="handleClick($event)"
+      (mousedown)="mouseDown($event)"
+      (mouseup)="mouseUp($event)"
+      (mousemove)="mouseMove($event)"
+      (touchstart)="logTouchstart($event)"
+      (touchend)="logTouchend($event)"
+      (touchmove)="logTouchMove($event)"
+      >
 
       <div class="display-6 ms-3 position-absolute zindex-dropdown mt-3" style="z-index:2">{{index +1 }}</div>
       <span style="width: {{widthOld}}px;">
