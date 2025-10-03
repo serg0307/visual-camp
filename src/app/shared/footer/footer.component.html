@@ -2,8 +2,8 @@
   <div class="container-fluid d-flex align-items-start flex-md-row overflow-hidden">
     <app-branding [scheme]="'light'" [isHeader]="false" class="m-auto d-none d-md-block"></app-branding>
     <div role="search" class="bg-light text-end w-100 my-auto">
-      <div class="phone">Phone: <span class="" [innerText]="getPhone()"></span></div>
-      <div class="phone">Email: <span class="" [innerText]="getMail()"></span></div>
+      <div *ngIf="getPhone()" class="phone">Phone: <span class="" [innerText]="getPhone()"></span></div>
+      <div *ngIf="getMail()" class="phone">Email: <span class="" [innerText]="getMail()"></span></div>
       <div *ngIf="getInstagram()" class="phone"><a [href]="getInstagram()" target="_blank" class="link-body-color">Instagram</a></div>
       <div *ngIf="getBehance()" class="phone"><a [href]="getBehance()"  target="_blank" class="link-secondary">Behance</a></div>
       <div *ngIf="getLinkedIn()" class="phone"><a [href]="getLinkedIn()"  target="_blank" class="link-secondary">LinkedIn</a></div>
