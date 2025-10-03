@@ -21,6 +21,7 @@ export class WorkflowPageComponent {
       const node: any = nodes.pop();
       this.workflow.id = this.id;
       this.workflow.title = node.attributes.title;
+      this.workflow.clientApproval = node.attributes['field_client_approval'];
       this.workflow.resultTitle = node.attributes['field_result_title'];
       if (node.attributes['field_result']) {
         this.workflow.result = node.attributes['field_result'].processed;
@@ -150,6 +151,7 @@ export class WorkflowPageComponent {
               declined: stage.attributes.field_declined,
               type: stageType,
             }
+            stageVisual.result = [];
             stage.relationships.field_items.data.forEach((item:any) => {
               const inc = stage.included.find((el: any) => el.id == item.id);
               const i: WorkflowItem = {
@@ -161,7 +163,6 @@ export class WorkflowPageComponent {
               }
               stageVisual.items.push(i);
             });
-            stageVisual.result = [];
             if (stage.relationships.field_result.data) {
               stage.relationships.field_result.data.forEach((item:any) => {
                 const inc = stage.included.find((el: any) => el.id == item.id);
@@ -174,8 +175,8 @@ export class WorkflowPageComponent {
                 }
                 stageVisual.result?.push(i);
               });
-              this.workflow.stages.visual.push(stageVisual);
             }
+            this.workflow.stages.visual.push(stageVisual);
             break;
 
           default:

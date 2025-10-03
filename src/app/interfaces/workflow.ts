@@ -5,6 +5,7 @@ export interface Workflow {
   resultTitle: string;
   result: string;
   completed: boolean;
+  clientApproval: boolean;
 }
 
 export interface WorkflowStage {

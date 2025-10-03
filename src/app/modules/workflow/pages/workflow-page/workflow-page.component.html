@@ -92,7 +92,7 @@
           </div>
           <div>
             <app-stage-visual *ngFor="let item of workflow.stages.visual; let i = index;" [stage]="item"
-              [index]="i"></app-stage-visual>
+              [index]="i" [clientApproval]="workflow.clientApproval"></app-stage-visual>
           </div>
         </div>
       </div>

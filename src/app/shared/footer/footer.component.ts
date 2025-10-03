@@ -11,7 +11,7 @@ export class FooterComponent {
   website: IWebsite = <IWebsite>{};
   constructor(private app: AppComponent) { }
   ngOnInit(): void {
-    console.log('app.website', this.app.website);
+    //console.log('app.website', this.app.website);
   }
   getLinkedIn() {
     return this.app.website.linkedIn;

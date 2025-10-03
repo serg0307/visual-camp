@@ -12,6 +12,7 @@ import { WorkflowService } from 'src/app/services/workflow.service';
 export class StageVisualComponent {
   @Input() stage: WorkflowStage = <WorkflowStage>{};
   @Input() index = 0;
+  @Input() clientApproval = true;
   divWidthOld = 0;
   widthOld = 0;
   isDragging = false;

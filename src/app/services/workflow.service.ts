@@ -84,7 +84,8 @@ export class WorkflowService {
       },
       resultTitle: '',
       result: '',
-      completed: false
+      completed: false,
+      clientApproval: false,
     }
     return wf;
   }
